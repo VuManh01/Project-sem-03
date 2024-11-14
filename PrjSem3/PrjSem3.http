@@ -1,0 +1,6 @@
+@PrjSem3_HostAddress = http://localhost:5209
+
+GET {{PrjSem3_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
