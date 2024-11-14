@@ -482,24 +482,27 @@
     ]
   },
   "packageFolders": {
-    "/Users/hongquan/.nuget/packages/": {}
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/hongquan/code/vscode/Aptech/Sem3/Sem3PRJ/PrjSem3/PrjSem3.csproj",
+      "projectUniqueName": "D:\\FPT- APTECH\\Project-sem-03\\PrjSem3\\PrjSem3.csproj",
       "projectName": "PrjSem3",
-      "projectPath": "/Users/hongquan/code/vscode/Aptech/Sem3/Sem3PRJ/PrjSem3/PrjSem3.csproj",
-      "packagesPath": "/Users/hongquan/.nuget/packages/",
-      "outputPath": "/Users/hongquan/code/vscode/Aptech/Sem3/Sem3PRJ/PrjSem3/obj/",
+      "projectPath": "D:\\FPT- APTECH\\Project-sem-03\\PrjSem3\\PrjSem3.csproj",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+      "outputPath": "D:\\FPT- APTECH\\Project-sem-03\\PrjSem3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/hongquan/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -551,7 +554,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
