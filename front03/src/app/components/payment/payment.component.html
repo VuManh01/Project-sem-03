@@ -1,0 +1,93 @@
+<section class="container payment">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="heading-logo m-auto">
+
+      </div>
+      <div class="container information-address">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="heading-text">
+              Delivery Information
+            </div>
+            <div class="form-floating my-1 form-custom">
+
+            </div>
+            <div class="form-floating my-1 form-custom">
+              <input type="email" class="form-control" placeholder="abcd@example.com">
+              <label>Email</label>
+            </div>
+            <div class="form-floating my-1 form-custom">
+              <input type="text" class="form-control" placeholder="Fullname">
+              <label>Full Name</label>
+            </div>
+            <div class="form-floating my-1 form-custom">
+              <input type="text" class="form-control" placeholder="Phonenumber">
+              <label>Phone Number</label>
+            </div>
+            <div class="form-floating my-1 form-custom">
+              <input type="text" class="form-control" placeholder="Address">
+              <label>House number, street name (optional)</label>
+            </div>
+
+            <div class="form-floating my-1 form-custom">
+              <textarea class="form-control form-note" placeholder="Note here..."></textarea>
+              <label>Notes (optional)</label>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="payment-method">
+              <div class="heading-text">
+                Payment
+              </div>
+              <div class="input-group choose-payment my-1">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="radio" name="paymentMethod" value="online">
+                </div>
+                <input type="text" class="form-control" value="Pay via VNPay" disabled>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4" style="background-color: #fAfAfa">
+      <div class="heading-cart">Order</div>
+      <hr>
+      <div class="product-container">
+        <div class="product-item my-3">
+          <div class="image">
+            <div class="information"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="discount-container">
+        <div class="row-discount">
+          <div class="form-floating my-1 form-discount-custom">
+            <input type="text" class="form-control" placeholder="Discount">
+            <label>Discount Code</label>
+          </div>
+          <button class="btn-discount btn btn-primary">Apply</button>
+        </div>
+        <div class="err-discount"></div>
+      </div>
+
+
+
+      <div class="total">
+        <div class="total-price">
+          <div class="total-text">Total</div>
+        </div>
+        <div class="action">
+
+          <button class="btn-order">Place Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</section>

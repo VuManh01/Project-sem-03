@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang giá gói dịch vụ</title>
+    <link rel="stylesheet" href="plans.component.css">
+</head>
+<body>
+    <div class="pricing-container">
+        <!-- Plus Plan -->
+        <div class="plan" *ngFor="let item of membershipServiceList" >
+            <h2>{{item.membershipServiceId}}</h2>
+            <h3>${{item.price}} VND/Month</h3>
+            <button (click)="confirmDeletion(item.membershipServiceId, item.price)">Select Plan</button>
+            <p>Unlock every recipes.</p>
+            <ul>
+                <li *ngFor="let text of (item.description.split('\n'))">
+                    {{text}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
