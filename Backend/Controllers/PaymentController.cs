@@ -190,7 +190,7 @@ namespace project3api_be.Controllers
         public async Task<IActionResult> PaymentCallback()
         {
             var message = "Payment completed";
-            int orderId;
+            long orderId;
             string orderInfo;
             string paymentStatus = "success";
             try
@@ -204,12 +204,12 @@ namespace project3api_be.Controllers
                 var responseSplit = response.OrderInfo.Split(" - ");
                 Console.WriteLine($"responseSplit: {responseSplit}");
                 var paymentType = responseSplit[2].Split(":")[1];
+                orderId = long.Parse(responseSplit[3]);
 
                 if (paymentType == PaymentType.Book.ToString())
                 {
                     //book
                     // Tìm order liên quan đến OrderId từ response
-                    orderId = int.Parse(response.OrderId); // Chuyển đổi sang int
                     var order = await _context.Orders
                         .FirstOrDefaultAsync(o => o.OrderId == orderId);
                     var payment = await _context.Payments
@@ -256,12 +256,11 @@ namespace project3api_be.Controllers
                 {
                     //membership
                     // Tìm OrderMembership liên quan đến OrderId từ response
-                    var orderMembershipId = int.Parse(response.OrderId); // Chuyển đổi sang int
+                    var orderMembershipId = orderId; // Chuyển đổi sang int
                     var orderMembership = await _context.OrderMembership
                         .FirstOrDefaultAsync(om => om.OrderMembershipId == orderMembershipId);
                     var paymentMember = await _context.PaymentMembers
                         .FirstOrDefaultAsync(pm => pm.OrderMembershipId == orderMembershipId);
-                    orderId = orderMembershipId;
                     if (orderMembership != null)
                     {
                         // Nếu thanh toán thành công, cập nhật trạng thái Order thành 'complete'
@@ -285,13 +284,13 @@ namespace project3api_be.Controllers
                         await _context.SaveChangesAsync();
                     }
                 }
-                return Ok("<html><body>" +
+                return Content("<html><body>" +
                 "<script>" +
                 "window.opener.postMessage(" +
                 "{ message: '" + message + "', orderId: '" + orderId + "', orderInfo: '" + orderInfo + "' , paymentStatus: '" + paymentStatus + "'}, '*');" +
                 "window.close();" +  // Đóng popup sau khi gửi dữ liệu
                 "</script>" +
-                "</body></html>");
+                "</body></html>", "text/html");
             }
             catch (Exception ex)
             {
@@ -302,10 +301,11 @@ namespace project3api_be.Controllers
 
         // using check order id on signup page 
         [HttpGet("check-membership")]
-        public async Task<IActionResult> CheckMembership([FromBody] int orderId)
+        public async Task<IActionResult> CheckMembership([FromQuery] int orderId)
         {
+            Console.WriteLine($"orderId: {orderId}");
             var orderMembership = await _context.OrderMembership
-                .FirstOrDefaultAsync(om => om.OrderMembershipId == orderId);
+            .FirstOrDefaultAsync(om => om.OrderMembershipId == orderId);
 
             if (orderMembership != null)
             {

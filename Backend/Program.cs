@@ -300,9 +300,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors(options =>
 {
-    options.AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowAnyOrigin();
+    options.WithOrigins("http://localhost:4200") // Thay thế bằng URL của frontend
+           .AllowAnyHeader()
+           .AllowAnyMethod()
+           .AllowCredentials(); // Cho phép gửi cookie và thông tin xác thực
 });
 
 // Thêm logging

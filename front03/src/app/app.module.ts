@@ -18,6 +18,7 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MembershipPurchaseDTO} from "../dto/membershipPurchaseDTO";
 import {Observable} from "rxjs";
 import {API} from "./API";
@@ -19,11 +19,18 @@ export class PaymentService {
     return this.http.post(`http://localhost:5211/${API.PURCHASE_BOOK}`, bookRequest);
   }
 
-  checkMembership(): Observable<any> {
-    return this.http.get(`http://localhost:5211/${API.CHECK_MEMBERSHIP}`);
+  checkMembership(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(`http://localhost:5211/${API.CHECK_MEMBERSHIP}?orderId=${id}`, { headers });
   }
 
-  checkBook(): Observable<any> {
-    return this.http.get(`http://localhost:5211/${API.CHECK_BOOK}`);
+  checkBook(orderId:number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(`http://localhost:5211/${API.CHECK_BOOK}?orderId=${orderId}`, { headers });
+
   }
 }

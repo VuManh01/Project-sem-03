@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   login(loginDTO: LoginDTO):Observable<any> {
-    return this.http.post(`http://localhost:5211/${API.LOGIN}`, loginDTO);
+    return this.http.post(`http://localhost:5211/${API.LOGIN}`, loginDTO,{ withCredentials: true } );
   }
   logout():Observable<any> {
     return this.http.post(`http://localhost:5211/${API.LOGOUT}`,{});

@@ -39,7 +39,7 @@ namespace project3api_be.Services
             vnpay.AddRequestData("vnp_CurrCode", _config["VnPay:CurrCode"]);
             vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress(context));
             vnpay.AddRequestData("vnp_Locale", _config["VnPay:Locale"]);
-            vnpay.AddRequestData("vnp_OrderInfo", $"{model.Description} - {model.FullName} - Type:{model.PaymentType}");
+            vnpay.AddRequestData("vnp_OrderInfo", $"{model.Description} - {model.FullName} - Type:{model.PaymentType} - {model.OrderId} ");
             vnpay.AddRequestData("vnp_OrderType", "other"); //default value: other
             vnpay.AddRequestData("vnp_ReturnUrl", _config["VnPay:PaymentBackReturnUrl"]);
             vnpay.AddRequestData("vnp_TxnRef", tick); // Mã tham chiếu của giao dịch tại hệ 

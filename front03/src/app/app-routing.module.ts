@@ -23,7 +23,7 @@ const routes: Routes = [
   {path : 'vanilla', component : VanillaComponent},
   {path : 'signup/:id', component : SignUpComponent},
   {path : 'payment', component : PaymentComponent},
-  { path: '**', component: PageNotFoundComponent },
+  {path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

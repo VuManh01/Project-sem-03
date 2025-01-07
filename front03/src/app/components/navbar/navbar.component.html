@@ -25,9 +25,15 @@
                   <a class="text-white px-3" [routerLink]="">
                       <i class="fab fa-instagram"></i>
                   </a>
-                  <a class="text-white pl-3" [routerLink]="['/login']">
-                      LOGIN
-                  </a>
+                <a *ngIf="!dataUser" class="text-white pl-3" [routerLink]="['/login']">
+                  LOGIN
+                </a>
+                <a *ngIf="dataUser" class="user-logout text-white pl-3">
+                  Hello, {{dataUser.fullName}}
+                  <button class="btn-logout text-white pl-3" (click)="handleLogout()">
+                    LOGOUT
+                  </button>
+                </a>
               </div>
           </div>
       </div>

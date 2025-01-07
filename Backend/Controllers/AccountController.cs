@@ -118,7 +118,7 @@ namespace project3api_be.Controllers
         }
 
 
-        [Authorize(Roles = "Admin,User")]
+        // [Authorize(Roles = "Admin,User")]
         // POST: api/account/forgot-password
         [AllowAnonymous]
         [HttpPost("forgot-password")]
@@ -176,7 +176,7 @@ namespace project3api_be.Controllers
 
 
         // POST: api/account/reset-password
-        [Authorize(Roles = "Admin,User")]
+        // [Authorize(Roles = "Admin,User")]
         [AllowAnonymous]
         [HttpPost("reset-password")]
         public async Task<ActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
@@ -292,12 +292,20 @@ namespace project3api_be.Controllers
 
 
         // POST: api/account/logout
-        [Authorize(Roles = "Admin,User")]
+        // [Authorize(Roles = "Admin,User")]
         // POST: api/account/logout
         [HttpPost("logout")]
         public ActionResult Logout()
         {
             // Clear token or handle logout logic.
+            Response.Cookies.Append("dataUser", "", new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
+            Response.Cookies.Append("isLoggedIn", "", new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddDays(-1)
+            });
             return Ok(new AuthResponseDto
             {
                 IsSuccess = true,
@@ -305,7 +313,7 @@ namespace project3api_be.Controllers
             });
         }
 
-        [Authorize(Roles = "Admin,User")]
+        // [Authorize(Roles = "Admin,User")]
         // POST: api/account/subscription
         [HttpPost("subscription")]
         public async Task<ActionResult> CreateSubscription([FromBody] SubscriptionDto subscriptionDto)

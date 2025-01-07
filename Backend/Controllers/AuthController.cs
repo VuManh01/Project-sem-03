@@ -10,12 +10,14 @@ using System.IdentityModel.Tokens.Jwt;
 using project3api_be.Services;
 using project3api_be.Dtos;
 namespace project3api_be.Controllers;
+
+using System.Text.Json;
 using Microsoft.AspNetCore.Authentication;
 
 [Route("api/[controller]")]
 [ApiController]
 public class AuthController : ControllerBase
-{   
+{
     private readonly IConfiguration _configuration;
     private readonly ApplicationDbContext _context;
     // private readonly JwtService _jwtService;
@@ -54,40 +56,61 @@ public class AuthController : ControllerBase
             return Unauthorized("Invalid credentials");
         }
 
-        // tạo Claims
-        var claims = new[] {
-            new Claim(ClaimTypes.NameIdentifier, account.AccountId.ToString()),
-            new Claim(ClaimTypes.Email, account.Email),
-            new Claim(ClaimTypes.Role, account.Role?.RoleName ?? "No Role")
-        };
-         var claimsIdentity = new ClaimsIdentity(claims, "login");
+        // // tạo Claims
+        // var claims = new[] {
+        //     new Claim(ClaimTypes.NameIdentifier, account.AccountId.ToString()),
+        //     new Claim(ClaimTypes.Email, account.Email),
+        //     new Claim(ClaimTypes.Role, account.Role?.RoleName ?? "No Role")
+        // };
+        //  var claimsIdentity = new ClaimsIdentity(claims, "login");
 
-        // Tạo ClaimsPrincipal
-        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+        // // Tạo ClaimsPrincipal
+        // var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-        // Đăng nhập người dùng
-        await HttpContext.SignInAsync("Cookies",claimsPrincipal);
+        // // Đăng nhập người dùng
+        // await HttpContext.SignInAsync("Cookies",claimsPrincipal);
 
         // Tạo JWT token nếu mật khẩu chính xác
         // string jwt = _jwtService.GenerateToken(account);
 
-        // Set cookie with JWT token
-        // Response.Cookies.Append("jwt", jwt, new CookieOptions
-        // {
-        //     HttpOnly = true,
-        //     SameSite = SameSiteMode.Strict,
-        //     Secure = true
-        // });
+        var isLoggerIn = true;
+        var dataUser = new
+        {
+            accountId = account.AccountId,
+            email = account.Email,
+            role = account.Role?.RoleName ?? "No Role",
+            fullName = account.FullName
+        };
 
-        return Ok(new AuthResponseDto{ 
+        // Serialize the dataUser object to a JSON string
+        var dataUserJson = JsonSerializer.Serialize(dataUser);
+
+        // Set cookie with JSON string and expiration time of 1 hour
+        Response.Cookies.Append("dataUser", dataUserJson, new CookieOptions
+        {
+            HttpOnly = false,
+            SameSite = SameSiteMode.None,
+            Secure = true,
+            Expires = DateTimeOffset.UtcNow.AddHours(1)
+        });
+
+        Response.Cookies.Append("isLoggedIn", isLoggerIn.ToString(), new CookieOptions
+        {
+            HttpOnly = false,
+            SameSite = SameSiteMode.None,
+            Secure = true,
+            Expires = DateTimeOffset.UtcNow.AddHours(1)
+        });
+        return Ok(new AuthResponseDto
+        {
             // Token = jwt,
-            IsSuccess = true,  
-            Message = "Login successful", 
+            IsSuccess = true,
+            Message = "Login successful",
             Role = account.Role?.RoleName ?? "No Role",
             AccountId = account.AccountId,
             Email = account.Email,
             FullName = account.FullName,
-            
+
             // User = new
             // {
             //     account.FullName,
