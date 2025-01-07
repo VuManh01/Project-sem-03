@@ -193,12 +193,12 @@ body {
 
 .forms .form-content .button {
   color: #fff;
-  margin-top: 40px;
+  margin-top: 15px;
 }
 
 .forms .form-content .button input {
   color: #fff;
-  background: #ffd1dc;
+  background: #eeb4c3;
   border-radius: 6px;
   padding: 0;
   cursor: pointer;
@@ -206,7 +206,12 @@ body {
 }
 
 .forms .form-content .button input:hover {
-  background: #ffd1dc;
+  background: #d9abb5;
+  transform: scale(1.01);
+}
+.forms .form-content .button input:active {
+  background: #d9abb5;
+  transform: scale(0.90);
 }
 
 .forms .form-content label {
@@ -250,3 +255,18 @@ body {
     display: none;
   }
 }
+
+.btn-submit:disabled {
+  background-color: #ffd1dc!important;
+  cursor: not-allowed!important;
+  transition: all 0.35s ease!important;
+}
+
+.err {
+  display: block;
+  color: red;
+  transition: all 0.4s ease;
+  font-size: 14px;
+  height: 14px;
+}
+

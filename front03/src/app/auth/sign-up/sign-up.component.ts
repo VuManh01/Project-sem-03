@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {PaymentService} from "../../services/payment.service";
 import {AuthService} from "../../services/auth.service";
 
@@ -8,11 +8,13 @@ import {AuthService} from "../../services/auth.service";
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent implements OnInit{
+export class SignUpComponent implements OnInit {
   id!: number;
-  constructor(private router:Router, private activatedRoute:ActivatedRoute,private auth:AuthService, private paymentService:PaymentService) {
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private auth: AuthService, private paymentService: PaymentService) {
 
   }
+
   email: string = '';
   password!: string;
   passwordAgain!: string;
@@ -20,6 +22,7 @@ export class SignUpComponent implements OnInit{
   isDisabledBtn = true;
   isEmailValid!: string;
   errMessage!: string;
+
   onEmailChange() {
     let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
     if (this.email === '') {
@@ -34,8 +37,10 @@ export class SignUpComponent implements OnInit{
     }
     this.checkAllFields();
   }
+
   isPwValid!: string;
   errMessagePw!: string;
+
   onPasswordChange() {
     let pattern =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -66,8 +71,10 @@ export class SignUpComponent implements OnInit{
     }
     this.checkAllFields();
   }
+
   isPwAgainValid!: string;
   errMessagePwAgain!: string;
+
   onPasswordAgainChange() {
     let pattern =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -95,9 +102,9 @@ export class SignUpComponent implements OnInit{
     );
   }
 
-  checkId(id:number){
+  checkId(id: number) {
     console.log("Id:", id);
-    if(!id){
+    if (!id) {
       this.router.navigate(['/']);
     }
     this.paymentService.checkMembership(id).subscribe({
@@ -113,29 +120,40 @@ export class SignUpComponent implements OnInit{
   }
 
   ngOnInit() {
+
     //   togo get id on route
     this.activatedRoute.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
     })
     //check id
     this.checkId(this.id);
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
   }
 
-  handleSignUp(){
-    this.auth.register({email: this.email, password: this.password, fullName:this.fullName, orderId: this.id}).subscribe({
-      next: res =>{
+  handleSignUp() {
+    this.auth.register({
+      email: this.email,
+      password: this.password,
+      fullName: this.fullName,
+      orderId: this.id
+    }).subscribe({
+      next: res => {
         console.log("Regis success: ", res);
         this.auth.login({email: this.email, password: this.password}).subscribe({
-          next: res =>{
+          next: res => {
             console.log("Login success: ", res);
             this.router.navigate(['/']);
           },
-          error: err =>{
+          error: err => {
             console.log("Login failed: ", err);
           }
         })
       },
-      error: err =>{
+      error: err => {
         console.log("Regis failed: ", err);
       }
     })

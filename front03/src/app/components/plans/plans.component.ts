@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import Swal from 'sweetalert2';
 import {PaymentService} from "../../services/payment.service";
 import {MembershipPurchaseDTO} from "../../dto/membershipPurchaseDTO";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {MembershipService} from "../../services/membership.service";
 import {MembershipServiceModel} from "../../models/membershipService.model";
 
@@ -13,21 +13,28 @@ import {MembershipServiceModel} from "../../models/membershipService.model";
 
 })
 
-export class PlansComponent implements OnInit{
+export class PlansComponent implements OnInit {
   constructor(private paymentService: PaymentService,
               private router: Router,
-              private membershipService:MembershipService,
+              private membershipService: MembershipService,
               private cdr: ChangeDetectorRef) {
 
   }
 
-   ngOnInit() {
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
     //init data membership
     this.getMembership();
-     this.cdr.detectChanges();
+    this.cdr.detectChanges();
   }
-  membershipPurcharse: MembershipPurchaseDTO ={ membershipServiceId: 0, price: 0 };
+
+  membershipPurcharse: MembershipPurchaseDTO = {membershipServiceId: 0, price: 0};
   membershipServiceList: MembershipServiceModel[] = [];
+
   handlePayment(membershipServiceId: number, price: number) {
     const width = 1000;
     const height = 700;
@@ -99,9 +106,9 @@ export class PlansComponent implements OnInit{
   };
 
 
-  getMembership(){
+  getMembership() {
     this.membershipService.getMembership().subscribe({
-      next: (res) =>{
+      next: (res) => {
         this.membershipServiceList = res;
       },
       error: (err) => {
