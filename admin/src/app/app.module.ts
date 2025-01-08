@@ -10,7 +10,7 @@ import { UsersComponent } from './components/users/users.component';
 import { OrderComponent } from './components/order/order.component';
 import { FeedbacksComponent } from './components/feedbacks/feedbacks.component';
 import { NewRecipeComponent } from './components/new-recipe/new-recipe.component';
-import {QuillModule} from "ngx-quill";
+
 
 @NgModule({
   declarations: [
@@ -26,7 +26,6 @@ import {QuillModule} from "ngx-quill";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
