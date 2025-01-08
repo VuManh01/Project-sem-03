@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BookModel} from "../../models/book.model";
 import {PaymentService} from "../../services/payment.service";
 import {DiscountService} from "../../services/discount.service";
+import Swal from "sweetalert2";
+import {LoadingService} from "../../services/loading.service";
 
 
 @Component({
@@ -22,7 +24,8 @@ export class PaymentComponent implements OnInit {
   constructor(private paymentService:PaymentService,
               private router:Router,
               private activatedRoute:ActivatedRoute,
-              private discountService:DiscountService
+              private discountService:DiscountService,
+              private loadingService:LoadingService
   ) {
   }
 
@@ -148,6 +151,7 @@ export class PaymentComponent implements OnInit {
       total_price: totalPrice
     }
     console.log("bookPurchaseDTO: ", bookPurchaseDTO);
+    this.loadingService.setGlobalLoading(true);
     this.paymentService.purchaseBook(bookPurchaseDTO).subscribe({
       next: (res) => {
         console.log("res: ", res);
@@ -155,10 +159,14 @@ export class PaymentComponent implements OnInit {
         const popup = window.open(payUrl, "_blank", `width=${width},height=${height},left=${left},top=${top}`);
         if (!popup) {
           alert("Popup bị chặn. Hãy kiểm tra cài đặt trình duyệt.");
+          this.loadingService.setGlobalLoading(false);
+
         } else {
           window.addEventListener('message', (event) => {
             if (event.origin !== 'http://localhost:5211') {
               console.warn('Event từ nguồn không xác định:', event.origin);
+              this.loadingService.setGlobalLoading(false);
+
               return;
             }
 
@@ -166,22 +174,31 @@ export class PaymentComponent implements OnInit {
             const paymentStatus = event.data.paymentStatus; // success | error
             const orderId = event.data.orderId;
             if (paymentStatus === 'success') {
+              this.loadingService.setGlobalLoading(false);
               console.log('Thanh toán thành công!');
-              // todo: popup thanh toán thành công, mã đơn hàng, text yêu cầu liên hệ khi cần tra cứu
+              Swal.fire({
+                title: "Payment Success!",
+                text: `Thank you for your purchase. Your order ID is: ${orderId}. Please contact customer service if you need assistance or support.`,
+                icon: "success"
+              });
               //  trạng thái vận chuyển
               this.router.navigate([`/`]);
             } else if (paymentStatus === 'error') {
               console.log('Thanh toán thất bại!');
+              this.loadingService.setGlobalLoading(false);
               this.router.navigate(['/']);
             }
             // close popup if popup is open
             popup.close();
+
           });
         }
 
       },
       error: err => {
         console.log("err to payment: ", err);
+        this.loadingService.setGlobalLoading(false);
+
       },
     })
   }}

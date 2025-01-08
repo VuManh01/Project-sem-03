@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
 
-
 <router-outlet></router-outlet>
-
+<div class="load-container" *ngIf="isLoading">
+  <div class="loader"></div>
+</div>
 <app-footer></app-footer>

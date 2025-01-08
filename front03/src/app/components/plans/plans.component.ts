@@ -5,6 +5,7 @@ import {MembershipPurchaseDTO} from "../../dto/membershipPurchaseDTO";
 import {NavigationEnd, Router} from "@angular/router";
 import {MembershipService} from "../../services/membership.service";
 import {MembershipServiceModel} from "../../models/membershipService.model";
+import {LoadingService} from "../../services/loading.service";
 
 @Component({
   selector: 'app-plans',
@@ -17,7 +18,9 @@ export class PlansComponent implements OnInit {
   constructor(private paymentService: PaymentService,
               private router: Router,
               private membershipService: MembershipService,
-              private cdr: ChangeDetectorRef) {
+              private cdr: ChangeDetectorRef,
+              private loadingService:LoadingService
+  ) {
 
   }
 
@@ -48,6 +51,7 @@ export class PlansComponent implements OnInit {
       console.log("err");
       return;
     }
+    this.loadingService.setGlobalLoading(true);
     this.paymentService.purchaseMembership(this.membershipPurcharse).subscribe({
       next: (res) => {
         console.log("res: ", res);
@@ -55,10 +59,12 @@ export class PlansComponent implements OnInit {
         const popup = window.open(payUrl, "_blank", `width=${width},height=${height},left=${left},top=${top}`);
         if (!popup) {
           alert("Popup bị chặn. Hãy kiểm tra cài đặt trình duyệt.");
+          this.loadingService.setGlobalLoading(false);
         } else {
           window.addEventListener('message', (event) => {
             if (event.origin !== 'http://localhost:5211') {
               console.warn('Event từ nguồn không xác định:', event.origin);
+              this.loadingService.setGlobalLoading(false);
               return;
             }
 
@@ -67,8 +73,11 @@ export class PlansComponent implements OnInit {
             const orderId = event.data.orderId;
             if (paymentStatus === 'success') {
               console.log('Thanh toán thành công!');
+              this.loadingService.setGlobalLoading(false);
               this.router.navigate([`/signup/${orderId}`]);
             } else if (paymentStatus === 'error') {
+              this.loadingService.setGlobalLoading(false);
+
               console.log('Thanh toán thất bại!');
               this.router.navigate(['/']);
             }
@@ -80,8 +89,9 @@ export class PlansComponent implements OnInit {
       },
       error: err => {
         console.log("err to payment: ", err);
-      },
+        this.loadingService.setGlobalLoading(true);
 
+      },
     })
   }
 

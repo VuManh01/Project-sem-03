@@ -15,7 +15,7 @@ import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.
 const routes: Routes = [
   {path : '', component : HomeComponent,data: { animation: 'HomePage' }},
   {path : 'about', component : AboutComponent,data: { animation: 'AboutPage' }},
-  {path : 'product', component : ProductComponent},
+  {path : 'recipes', component : ProductComponent},
   {path : 'gallery', component : GalleryComponent},
   {path : 'contact', component : ContactComponent},
   {path : 'login', component : LoginComponent},
