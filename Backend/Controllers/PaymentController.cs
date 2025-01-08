@@ -104,7 +104,7 @@ namespace project3api_be.Controllers
                 var paymentRequest = new VnPayRequestDto
                 {
                     OrderId = orderMembership.OrderMembershipId.ToString(),
-                    Amount = (int)(request.Price * 100),
+                    Amount = (int)(request.Price * 25370), //1usd = 25370vnd
                     Description = "Membership Payment",
                     FullName = "Anonymous User",
                     CreatedDate = DateTime.Now,
@@ -133,14 +133,19 @@ namespace project3api_be.Controllers
                 //1: create orders status pending and order details
                 var order = new Order
                 {
-                    FullName = bookPurchaseDto.full_name,
-                    Email = bookPurchaseDto.email,
-                    PhoneNumber = bookPurchaseDto.phone_number,
-                    DeliveryAddress = bookPurchaseDto.delivery_address,
-                    TotalPrice = bookPurchaseDto.total_price,
-                    DiscountId = bookPurchaseDto.discountId,
+                    FullName = bookPurchaseDto.Full_name,
+                    Email = bookPurchaseDto.Email,
+                    PhoneNumber = bookPurchaseDto.Phone_number,
+                    DeliveryAddress = bookPurchaseDto.Delivery_address,
+                    TotalPrice = bookPurchaseDto.Total_price,
                     Status = "pending",
                 };
+
+                if (bookPurchaseDto.DiscountId != 0)
+                {
+                    Console.WriteLine($"DiscountId: {bookPurchaseDto.DiscountId}");
+                    order.DiscountId = bookPurchaseDto.DiscountId;
+                }
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
 
@@ -150,7 +155,7 @@ namespace project3api_be.Controllers
                     OrderId = order.OrderId,
                     BookId = bookPurchaseDto.BookId,
                     Quantity = 1,
-                    Price = bookPurchaseDto.total_price,
+                    Price = bookPurchaseDto.Total_price,
                 };
                 _context.OrderDetails.Add(order_detail);
                 await _context.SaveChangesAsync();
@@ -162,14 +167,15 @@ namespace project3api_be.Controllers
                     PaymentStatus = "pending",
                     CreatedAt = DateTime.Now
                 };
-
+                _context.Payments.Add(payment);
+                await _context.SaveChangesAsync();
                 // 4. Tạo VNPay payment URL
                 var paymentRequest = new VnPayRequestDto
                 {
                     OrderId = order.OrderId.ToString(),
-                    Amount = (int)(bookPurchaseDto.total_price * 100),
+                    Amount = (int)(bookPurchaseDto.Total_price * 25370), //1usd = 25370vnd
                     Description = "Book Payment",
-                    FullName = bookPurchaseDto.full_name,
+                    FullName = bookPurchaseDto.Full_name,
                     CreatedDate = DateTime.Now,
                     PaymentType = PaymentType.Book.ToString()
                 };
@@ -212,26 +218,37 @@ namespace project3api_be.Controllers
                     // Tìm order liên quan đến OrderId từ response
                     var order = await _context.Orders
                         .FirstOrDefaultAsync(o => o.OrderId == orderId);
+                    Console.WriteLine($"order: {order}");
                     var payment = await _context.Payments
                         .FirstOrDefaultAsync(p => p.OrderId == orderId);
+                    var orderDetail = await _context.OrderDetails
+                        .FirstOrDefaultAsync(od => od.OrderId == orderId);
                     var book = await _context.Books
-                        .FirstOrDefaultAsync(b => b.BookId == order.OrderDetails.FirstOrDefault().BookId);
+                        .FirstOrDefaultAsync(b => b.BookId == orderDetail.BookId);
 
-                    if (payment == null)
+                    if (payment != null)
                     {
-                        if (response.Success)
+                        try
                         {
-                            payment.PaidAt = DateTime.Now;
-                            payment.UpdatedAt = DateTime.Now;
-                            payment.PaymentStatus = "success";
-                            message = "Payment completed";
-                            paymentStatus = "success";
+                            if (response.Success)
+                            {
+                                payment.PaidAt = DateTime.Now;
+                                payment.UpdatedAt = DateTime.Now;
+                                payment.PaymentStatus = "completed"; //pending, completed
+                                message = "Payment completed";
+                                paymentStatus = "success";
+                            }
+                            else
+                            {
+                                payment.PaymentStatus = "error";
+                                message = "Payment failed";
+                                paymentStatus = "error";
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            payment.PaymentStatus = "error";
-                            message = "Payment failed";
-                            paymentStatus = "error";
+                            // Log the exception or handle it as needed
+                            Console.WriteLine($"An error occurred: {ex.Message}");
                         }
                     }
 

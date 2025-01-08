@@ -9,8 +9,10 @@ public partial class Discount
     [Column("discount_id")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int DiscountId { get; set; }
-    [Column("amount")]
 
+    [Column("name")]
+    public string Name { get; set; }
+    [Column("amount")]
     public decimal Amount { get; set; }
     [Column("expires")]
 

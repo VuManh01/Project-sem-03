@@ -7,12 +7,12 @@ namespace project3api_be.Dtos
 {
    public class BookPurchaseDto
     {
-    internal decimal total_price;
+    public decimal Total_price { get; set; }
     public int BookId { get; set; }
-    public string email { get; set; }
-    public string phone_number { get; set; }
-    public string full_name { get; set; }
-    public string delivery_address { get; set; }
-    public int discountId { get; set; } 
+    public string Email { get; set; }
+    public string Phone_number { get; set; }
+    public string Full_name { get; set; }
+    public string Delivery_address { get; set; }
+    public int DiscountId { get; set; } 
     }
 }

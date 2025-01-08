@@ -4,7 +4,7 @@
       <div class="heading-logo m-auto">
 
       </div>
-      <div class="container information-address">
+      <div class="container">
         <div class="row">
           <div class="col-sm-6">
             <div class="heading-text">
@@ -14,25 +14,42 @@
 
             </div>
             <div class="form-floating my-1 form-custom">
-              <input type="email" class="form-control" placeholder="abcd@example.com">
-              <label>Email</label>
+              <label>Email <span style="color: red">*</span></label>
+              <input type="email"
+                     [(ngModel)]="email"
+                     [ngClass]="isEmailValid"
+                     (input)="onEmailChange()"
+                     class="form-control" placeholder="Your email">
+              <div class="error-email err">{{ errMessage }}</div>
+
             </div>
             <div class="form-floating my-1 form-custom">
-              <input type="text" class="form-control" placeholder="Fullname">
-              <label>Full Name</label>
+              <label>Full Name <span style="color: red">*</span></label>
+              <input type="text"
+                     [(ngModel)]="fullName"
+                     [ngClass]="isFullNameValid"
+                     (input)="onFullNameChange()"
+                     class="form-control" placeholder="Your name">
+              <div class="error-fullname err">{{ errMessageFullName }}</div>
             </div>
             <div class="form-floating my-1 form-custom">
-              <input type="text" class="form-control" placeholder="Phonenumber">
-              <label>Phone Number</label>
-            </div>
-            <div class="form-floating my-1 form-custom">
-              <input type="text" class="form-control" placeholder="Address">
-              <label>House number, street name (optional)</label>
+              <label>Phone Number <span style="color: red">*</span></label>
+              <input type="text"
+                     [(ngModel)]="phone"
+                     [ngClass]="isPhoneValid"
+                     (input)="onPhoneChange()"
+                     class="form-control" placeholder="Your phone number">
+              <div class="error-phone err">{{ errMessagePhone }}</div>
             </div>
 
             <div class="form-floating my-1 form-custom">
-              <textarea class="form-control form-note" placeholder="Note here..."></textarea>
-              <label>Notes (optional)</label>
+              <label>House number, street name <span style="color: red">*</span></label>
+              <textarea type="text"
+                     [(ngModel)]="address"
+                     [ngClass]="isAddressValid"
+                     (input)="onAddressChange()"
+                        class="form-control" style="width: 100%; height: 70px" placeholder="Your address"></textarea>
+              <div class="error-address err">{{ errMessageAddress }}</div>
             </div>
           </div>
           <div class="col-sm-6">
@@ -40,11 +57,9 @@
               <div class="heading-text">
                 Payment
               </div>
-              <div class="input-group choose-payment my-1">
-                <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="radio" name="paymentMethod" value="online">
-                </div>
-                <input type="text" class="form-control" value="Pay via VNPay" disabled>
+              <div class="input-group choose-payment my-1 d-flex align-items-center">
+                <input class="form-check-input mt-0" type="radio" name="paymentMethod" value="online" checked>
+                <span class="ml-2">Pay via VNPay</span>
               </div>
 
             </div>
@@ -56,33 +71,50 @@
       <div class="heading-cart">Order</div>
       <hr>
       <div class="product-container">
-        <div class="product-item my-3">
-          <div class="image">
-            <div class="information"></div>
+        <div class=" my-3 d-flex justify-content-between align-items-center">
+          <div class="image" style="width: 40%">
+            <img style="width: 100%" src="{{book.imageUrl}}" alt="Book">
+          </div>
+          <div class="" style="width: 50%">
+            <h1 class="name mb-4" style="font-size: 20px">
+              {{book.bookName}}
+            </h1>
+            <div class="price d-flex justify-items-start align-items-center">
+              <b class="title">Price:</b>
+              <div class="amount ml-2">${{book.price}}</div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="discount-container">
         <div class="row-discount">
-          <div class="form-floating my-1 form-discount-custom">
-            <input type="text" class="form-control" placeholder="Discount">
-            <label>Discount Code</label>
+          <div class=" my-1 d-flex align-items-center justify-content-between w-100" style="height: 40px">
+            <input style="height: 100%; padding: 5px 10px; border-radius: 11px;width: 58%" type="text"
+                   class="form-control rounded-b-2xl py-2.5 px-2.5 !w-3/4"
+                   [(ngModel)]="discountCode"
+                   placeholder="Discount">
+            <button style="height: 100%; padding: 0 30px" class="btn btn-primary !w-1/5" (click)="handleCheckDiscount()">Apply</button>
           </div>
-          <button class="btn-discount btn btn-primary">Apply</button>
         </div>
-        <div class="err-discount"></div>
       </div>
 
-
-
       <div class="total">
-        <div class="total-price">
-          <div class="total-text">Total</div>
+        <div class="d-flex align-item-center justify-content-between">
+          <div class="price-text">Price</div>
+          <div class="price-amount">{{book.price}}</div>
+        </div>
+        <div *ngIf="discount?.amount > 0" class="d-flex align-items-center justify-content-between">
+          <div class="discount-text">Discount</div>
+          <div class="discount-amount">{{discount?.amount}}%</div>
+        </div>
+        <div class="total-price d-flex align-items-center justify-content-between">
+          <div class="total-text font-bold" style="font-weight: 600">Total</div>
+          <div class="total-amount" *ngIf="discount?.amount > 0" style="font-weight: 600">${{book.price - ((discount?.amount * book.price) / 100)}}</div>
+          <div class="total-amount" *ngIf="!discount" style="font-weight: 600">{{book.price}}</div>
         </div>
         <div class="action">
-
-          <button class="btn-order">Place Order</button>
+          <button class="btn-primary btn btn-place-order" [disabled]="isDisabledBtn" (click)="handlePayment()">Place Order</button>
         </div>
       </div>
     </div>

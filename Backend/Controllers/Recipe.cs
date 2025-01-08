@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using project3api_be.Data;
+using project3api_be.Dtos;
 using project3api_be.Models;
+using RestSharp;
 
 namespace project3api_be.Controllers
 {
@@ -10,10 +13,11 @@ namespace project3api_be.Controllers
     public class RecipeController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
-        public RecipeController(ApplicationDbContext context)
+        private readonly string _clientId;
+        public RecipeController(ApplicationDbContext context, IOptions<ImgurSettings> options)
         {
             _context = context;
+            _clientId = options.Value.ClientId;
         }
 
         // GET: api/Recipe
@@ -37,12 +41,75 @@ namespace project3api_be.Controllers
             return recipe;
         }
 
+        // POST: api/Recipe/image/upload
+        [HttpPost("image/upload")]
+        public async Task<IActionResult> UploadImage(IFormFile image)
+        {
+            if (image != null && image.Length > 0)
+            {
+                try
+                {
+                    using var memoryStream = new MemoryStream();
+                    await image.CopyToAsync(memoryStream);
+                    var fileBytes = memoryStream.ToArray();
+                    var base64Image = Convert.ToBase64String(fileBytes);
+
+                    // Tạo client để upload ảnh lên Imgur
+                    var client = new RestClient("https://api.imgur.com/3/upload");
+                    var request = new RestRequest("/", Method.Post);
+                    request.AddHeader("Authorization", $"Client-ID {_clientId}");
+                    request.AddParameter("image", base64Image);
+
+                    // Gửi yêu cầu và lấy phản hồi
+                    var response = await client.ExecuteAsync(request);
+
+                    if (response.IsSuccessful)
+                    {
+                        var imgurResponse = System.Text.Json.JsonDocument.Parse(response.Content);
+                        var imgUrl = imgurResponse.RootElement.GetProperty("data").GetProperty("link").GetString();
+                        return Ok(new { imgUrl });
+                    }
+                    else
+                    {
+                        // Lỗi từ API Imgur
+                        Console.WriteLine("Error uploading image to Imgur: " + response.Content);
+                        return BadRequest("Error uploading image to Imgur");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi upload ảnh
+                    Console.WriteLine("Error uploading image: " + ex.Message);
+                    return BadRequest("Error uploading image");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No image uploaded");
+                return BadRequest("No image uploaded");
+            }
+        }
+
         // POST: api/Recipe
         [HttpPost]
-        public async Task<ActionResult<Recipe>> PostRecipe(Recipe recipe)
+        public async Task<ActionResult<Recipe>> PostRecipe([FromBody] RecipesRequestDto recipesRequestDto)
         {
-            _context.Recipes.Add(recipe);
-            await _context.SaveChangesAsync();
+            //step 1: create recipe
+            var recipe = new Recipe
+            {
+                RecipeName = recipesRequestDto.RecipeName,
+                Difficulty = recipesRequestDto.Difficulty,
+                SubmittedBy = recipesRequestDto.SubmittedBy,
+                Status = recipesRequestDto.Status,
+                IsPost = recipesRequestDto.IsPost,
+                Rating = recipesRequestDto.Rating,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
+            //step 2: upload more image
+            //step 3: save recipe_flavour
+            //step 4: save recipe
+    
 
             return CreatedAtAction(nameof(GetRecipe), new { id = recipe.RecipeId }, recipe);
         }

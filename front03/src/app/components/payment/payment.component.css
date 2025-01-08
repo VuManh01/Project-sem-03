@@ -206,4 +206,22 @@ select {
 }
 
 
+.err {
+  display: block;
+  color: red;
+  transition: all 0.4s ease;
+  font-size: 14px;
+  height: 14px;
+  margin-top: 5px;
+}
+
+
+.btn-place-order{
+  background-color: #f194ad;
+}
+
+.btn-place-order:disabled{
+  background-color: #eeb4c3;
+  cursor: not-allowed;
+}
 

@@ -15,23 +15,11 @@ public partial class Recipe
     [Column("recipe_name")]
     public string RecipeName { get; set; } = null!;
 
-    [Column("servings")]
-    public int Servings { get; set; }
-
     [Column("difficulty")]
     public string Difficulty { get; set; } = "Easy";
 
-    [Column("active_time")]
-    public decimal ActiveTime { get; set; }
-
-    [Column("inactive_time")]
-    public decimal InactiveTime { get; set; }
-
-    [Column("ingredients")]
-    public string Ingredients { get; set; } = null!;
-
-    [Column("preparation_method")]
-    public string PreparationMethod { get; set; } = null!;
+    [Column("content")]
+    public string Content { get; set; } = null!;
 
     [Column("submitted_by")]
     public string SubmittedBy { get; set; } = null!;

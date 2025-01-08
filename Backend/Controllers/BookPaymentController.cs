@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace Backend_asp.net_sem3_withVnpay.Controllers
+namespace project3api_be.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

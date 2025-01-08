@@ -12,4 +12,12 @@ export const API = {
 
   //membership service
   GET_MEMBERSHIP: 'api/MembershipService',
+
+  //Book
+  //get 1 book
+  GET_LIMIT_1_BOOK: 'api/Book/limit/1',
+
+  //discount
+  //get discount by name
+  GET_DISCOUNT_BY_NAME: 'api/Discount/FindByName',
 }

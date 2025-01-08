@@ -1,9 +1,9 @@
 export interface BookPurchaseDTO {
   bookId: number;
   email: string;
-  phoneNumber: string;
-  fullName: string;
-  deliveryAddress: string;
+  phone_number: string;
+  full_name: string;
+  delivery_address: string;
   discountId: number;
-  totalPrice?: number;
+  total_price?: number;
 }
