@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace project3api_be.Models;
-
+[Table("orders")]
 public partial class Order
 {   
     [Column("order_id")]

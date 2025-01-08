@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace project3api_be.Models;
-
+[Table("payment_members")]
 public partial class PaymentMember
 {   
     [Column("payment_member_id")]

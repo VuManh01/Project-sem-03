@@ -37,7 +37,7 @@ namespace project3api_be.Controllers
         public async Task<ActionResult> Register([FromBody] RegisterDto registerDto)
         {
             //check order member ship tồn tại
-            var orderMember = await _context.OrderMembership.FirstOrDefaultAsync(o => o.OrderMembershipId == registerDto.OrderId);
+            var orderMember = await _context.OrderMemberships.FirstOrDefaultAsync(o => o.OrderMembershipId == registerDto.OrderId);
             if (orderMember == null)
             {
                 return BadRequest(new AuthResponseDto

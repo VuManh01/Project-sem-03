@@ -7,13 +7,20 @@
     <link rel="stylesheet" href="plans.component.css">
 </head>
 <body>
+    <div class="title-container-heading">
+      <h1 class="heading">Plans and Pricing
+        </h1>
+      <div class="subheading">
+        Choose the perfect plan for your journey
+      </div>
+    </div>
     <div class="pricing-container">
         <!-- Plus Plan -->
         <div class="plan" *ngFor="let item of membershipServiceList" >
-            <h2>{{item.membershipServiceId}}</h2>
-            <h3>${{item.price}} VND/Month</h3>
+            <h2 style="text-transform: uppercase">{{item.name}}</h2>
+            <h3>${{item.price}} USD</h3>
             <button (click)="confirmDeletion(item.membershipServiceId, item.price)">Select Plan</button>
-            <p>Unlock every recipes.</p>
+            <p class="title-text">Cascade credits:</p>
             <ul>
                 <li *ngFor="let text of (item.description.split('\n'))">
                     {{text}}
@@ -21,5 +28,7 @@
             </ul>
         </div>
     </div>
+    <br>
+    <br>
 </body>
 </html>

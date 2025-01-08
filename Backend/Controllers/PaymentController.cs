@@ -84,7 +84,7 @@ namespace project3api_be.Controllers
                     OrderStatus = "pending",
                     CreatedAt = DateTime.Now
                 };
-                _context.OrderMembership.Add(orderMembership);
+                _context.OrderMemberships.Add(orderMembership);
                 await _context.SaveChangesAsync();
 
                 var membershipService = await _context.MembershipServices
@@ -274,7 +274,7 @@ namespace project3api_be.Controllers
                     //membership
                     // Tìm OrderMembership liên quan đến OrderId từ response
                     var orderMembershipId = orderId; // Chuyển đổi sang int
-                    var orderMembership = await _context.OrderMembership
+                    var orderMembership = await _context.OrderMemberships
                         .FirstOrDefaultAsync(om => om.OrderMembershipId == orderMembershipId);
                     var paymentMember = await _context.PaymentMembers
                         .FirstOrDefaultAsync(pm => pm.OrderMembershipId == orderMembershipId);
@@ -321,7 +321,7 @@ namespace project3api_be.Controllers
         public async Task<IActionResult> CheckMembership([FromQuery] int orderId)
         {
             Console.WriteLine($"orderId: {orderId}");
-            var orderMembership = await _context.OrderMembership
+            var orderMembership = await _context.OrderMemberships
             .FirstOrDefaultAsync(om => om.OrderMembershipId == orderId);
 
             if (orderMembership != null)

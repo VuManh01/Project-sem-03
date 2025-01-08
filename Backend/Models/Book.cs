@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace project3api_be.Models;
-
+[Table("books")]
 public partial class Book
-{   
+{
     [Column("book_id")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int BookId { get; set; }

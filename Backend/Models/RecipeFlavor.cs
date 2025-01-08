@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace project3api_be.Models;
-
+[Table("recipe_flavor")]
 public partial class RecipeFlavor
 {
     [Key]

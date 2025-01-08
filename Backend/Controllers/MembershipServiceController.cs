@@ -95,7 +95,7 @@ namespace project3api_be.Controllers
             }
 
 
-            var orderMemberships = await _context.OrderMembership.Where(o => o.MembershipServiceId == id).ToListAsync();
+            var orderMemberships = await _context.OrderMemberships.Where(o => o.MembershipServiceId == id).ToListAsync();
 
             //delete all paymentMemberships of orderMemberships
             foreach (OrderMembership orderMembership in orderMemberships)
@@ -106,7 +106,7 @@ namespace project3api_be.Controllers
             }
 
             //delete all orderMemberships
-            _context.OrderMembership.RemoveRange(orderMemberships);
+            _context.OrderMemberships.RemoveRange(orderMemberships);
             await _context.SaveChangesAsync();
 
             //delete membershipService

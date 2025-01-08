@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace project3api_be.Models;
 
+[Table("membership_services")]
 public partial class MembershipService
 {   
     [Column("membership_service_id")]

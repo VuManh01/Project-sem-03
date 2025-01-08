@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
 namespace project3api_be.Models;
 [Table("order_membership")]
 public partial class OrderMembership

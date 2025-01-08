@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace project3api_be.Models;
-
+[Table("recipe")]
 public partial class Recipe
 {
     [Key]

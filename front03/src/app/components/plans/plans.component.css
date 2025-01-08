@@ -1,27 +1,29 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #ffd1dc;
+  background-color: #f5f5f5;
   color: #fff;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
 }
 
 .pricing-container {
   display: flex;
-  gap: 20px;
+  gap: 50px;
   padding: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .plan {
-  background-color: #2b2b2b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #f19e9c;
   border-radius: 10px;
   padding: 20px;
-  width: 300px;
-  text-align: center;
+  width: 350px;
+  text-align: left;
   border: 2px solid transparent;
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -38,13 +40,13 @@ body {
 .plan h2 {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #F195B2
+  color: #fff
 }
 
 .plan h3 {
   font-size: 32px;
   margin: 10px 0;
-  color: #F195B2;
+  color: #fff;
 }
 
 .plan p {
@@ -54,16 +56,22 @@ body {
 
 .plan ul {
   padding: 0;
-  margin: 20px 0;
 }
 
 .plan ul li {
-  margin: 10px 0;
-  font-size: 14px;
+  font-size: 20px;
+  margin: 5px 5%;
 }
 
+.title-text{
+  font-size: 23px!important;
+  font-weight: 700;
+}
+.plan li{
+  width: 100%;
+}
 .plan button {
-  background-color: #F195B2;
+  background-color: #7bc1e3;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -74,10 +82,36 @@ body {
 }
 
 .plan button:hover {
-  background-color: #F195B2;
+  background-color: #4898c7;
 }
-
+.title-text{
+  color: #fff;
+  font-size: 23px;
+  margin-right: 23%!important;
+  margin-bottom: 0!important;
+}
 .plan.disabled button {
   background-color: #555;
   cursor: not-allowed;
+}
+
+.title-container-heading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+.title-container-heading .heading{
+  color: #f19e9c;
+  font-size: 40px;
+  margin-bottom: 0;
+  margin-top: 50px;
+}
+
+.title-container-heading .subheading{
+  color: #f19e9c;
+  font-size: 24px;
+  margin-bottom: 0;
+  margin-top: 20px;
 }
