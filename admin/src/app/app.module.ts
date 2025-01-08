@@ -10,6 +10,7 @@ import { UsersComponent } from './components/users/users.component';
 import { OrderComponent } from './components/order/order.component';
 import { FeedbacksComponent } from './components/feedbacks/feedbacks.component';
 import { NewRecipeComponent } from './components/new-recipe/new-recipe.component';
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { NewRecipeComponent } from './components/new-recipe/new-recipe.component
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

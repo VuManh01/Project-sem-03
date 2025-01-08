@@ -66,8 +66,8 @@ namespace project3api_be.Controllers
                     if (response.IsSuccessful)
                     {
                         var imgurResponse = System.Text.Json.JsonDocument.Parse(response.Content);
-                        var imgUrl = imgurResponse.RootElement.GetProperty("data").GetProperty("link").GetString();
-                        return Ok(new { imgUrl });
+                        var url = imgurResponse.RootElement.GetProperty("data").GetProperty("link").GetString();
+                        return Ok(new { url });
                     }
                     else
                     {
