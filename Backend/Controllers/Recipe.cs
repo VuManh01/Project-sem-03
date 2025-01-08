@@ -17,7 +17,7 @@ namespace project3api_be.Controllers
         public RecipeController(ApplicationDbContext context, IOptions<ImgurSettings> options)
         {
             _context = context;
-            _clientId = options.Value.ClientId;
+            _clientId = "d64d984f60efcb1";
         }
 
         // GET: api/Recipe
@@ -109,7 +109,7 @@ namespace project3api_be.Controllers
             //step 2: upload more image
             //step 3: save recipe_flavour
             //step 4: save recipe
-    
+
 
             return CreatedAtAction(nameof(GetRecipe), new { id = recipe.RecipeId }, recipe);
         }
