@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Flavor and Upload Content</title>
+    <link rel="stylesheet" href="recipes.component.css">
+
+</head>
+<body>
+    <div>
+        <h1>Select Flavor and Upload Content</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="flavor">Choose Flavor:</label>
+            <select id="flavor" name="flavor" required>
+                <option value="vanilla">Vanilla</option>
+                <option value="chocolate">Chocolate</option>
+                <option value="strawberry">Strawberry</option>
+                <option value="matcha">Matcha</option>
+            </select>
+
+            <label for="content">Enter Content:</label>
+            <input type="text" id="content" name="content" required>
+
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
