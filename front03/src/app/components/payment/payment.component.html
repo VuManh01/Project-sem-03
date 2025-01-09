@@ -102,7 +102,7 @@
       <div class="total">
         <div class="d-flex align-item-center justify-content-between">
           <div class="price-text">Price</div>
-          <div class="price-amount">{{book.price}}</div>
+          <div class="price-amount">${{book.price}}</div>
         </div>
         <div *ngIf="discount?.amount > 0" class="d-flex align-items-center justify-content-between">
           <div class="discount-text">Discount</div>
@@ -111,7 +111,7 @@
         <div class="total-price d-flex align-items-center justify-content-between">
           <div class="total-text font-bold" style="font-weight: 600">Total</div>
           <div class="total-amount" *ngIf="discount?.amount > 0" style="font-weight: 600">${{book.price - ((discount?.amount * book.price) / 100)}}</div>
-          <div class="total-amount" *ngIf="!discount" style="font-weight: 600">{{book.price}}</div>
+          <div class="total-amount" *ngIf="!discount" style="font-weight: 600">${{book.price}}</div>
         </div>
         <div class="action">
           <button class="btn-primary btn btn-place-order" [disabled]="isDisabledBtn" (click)="handlePayment()">Place Order</button>

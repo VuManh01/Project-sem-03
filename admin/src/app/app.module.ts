@@ -18,7 +18,6 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RecipesComponent,
     UsersComponent,
     OrderComponent,
     FeedbacksComponent,
@@ -27,7 +26,8 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CKEditorModule
+    CKEditorModule,
+    RecipesComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,28 +10,51 @@
 <body>
     <div>
         <h1>Select Flavor and Upload Content</h1>
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <label for="flavor">Choose Flavor:</label>
-            <select id="flavor" name="flavor" required>
-                <option value="vanilla">Vanilla</option>
-                <option value="chocolate">Chocolate</option>
-                <option value="strawberry">Strawberry</option>
-                <option value="matcha">Matcha</option>
-            </select>
-
+        <div class="form">
+          <label for="name">Enter Name:</label>
+          <input type="text" id="name" name="name" required>
+          <br>
+          <label for="submittedBy">Submitted By:</label>
+          <input type="text" id="submittedBy" name="submittedBy" required>
+          <br>
+          <label for="difficulty">Difficulty:</label>
+          <select id="difficulty" name="difficulty" required>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <br>
+          <label for="flavor">Choose Flavor:</label>
+          <select id="flavor" name="flavor" required>
+            <option value="vanilla">Vanilla</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="strawberry">Strawberry</option>
+            <option value="matcha">Matcha</option>
+          </select>
+          <br>
+            <!--Content-->
             <label for="content">Enter Content:</label>
-            <input type="text" id="content" name="content" required>
+          <div class="main-container" id="content">
+            <div class="editor-container editor-container_classic-editor" #editorContainerElement>
+              <div class="editor-container__editor">
+                <div #editorElement>
+                  <ckeditor [editor]="Editor" [config]="config" *ngIf="isLayoutReady" [(ngModel)]="editorData" />
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <label for="image">Upload Image:</label>
-            <input type="file" id="image" name="image" accept="image/*" required>
-          <h1>richtex</h1>
-          <!-- app.component.html -->
+          <br>
+          <label for="rating">Rating:</label>
+          <input type="number" id="rating" name="rating" min="1" max="10" required>
+          <br>
+          <div style="display: flex;justify-content: flex-start; align-items: center">
+            <span>Is Post for membership:</span><input type="checkbox" id="membership" name="membership" value="yes">
+          </div>
 
-          <!-- Placeholder for CKEditor -->
-          <div #editor></div>
-
+          <button (click)="getEditorData()">Lấy dữ liệu từ CKEditor</button>
           <button type="submit">Submit</button>
-        </form>
+        </div>
     </div>
 </body>
 </html>

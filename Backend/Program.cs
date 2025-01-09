@@ -81,7 +81,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors(options =>
 {
-    options.WithOrigins("http://localhost:4200") // Thay thế bằng URL của frontend
+    options.WithOrigins("http://localhost:4200", "http://localhost:4001") // Thay thế bằng URL của frontend
            .AllowAnyHeader()
            .AllowAnyMethod()
            .AllowCredentials(); // Cho phép gửi cookie và thông tin xác thực
