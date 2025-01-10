@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace project3api_be.Models;
 [Table("roles")]
 public partial class Role
-{   
+{
     [Key]
     [Column("role_id")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,5 +20,4 @@ public partial class Role
     [Column("deleted_at")]
     public DateTime? DeletedAt { get; set; }
 
-    public virtual ICollection<Account> Accounts { get; set; } = new List<Account>();
 }
