@@ -1,1 +1,10 @@
-<p>feedbacks works!</p>
+<div class="feedbacks-container">
+  <h2>Feedbacks</h2>
+  <div *ngFor="let feedback of feedbacks" class="feedback">
+    <p><strong>Name:</strong> {{ feedback.fullName }}</p> <!-- Display Full Name -->
+    <p><strong>Email:</strong> {{ feedback.email }}</p>
+    <p><strong>Title:</strong> {{ feedback.title }}</p> <!-- Display Title -->
+    <p><strong>Content:</strong> {{ feedback.content }}</p>
+    <p><strong>Created At:</strong> {{ feedback.createdAt | date:'short' }}</p> <!-- Format CreatedAt -->
+  </div>
+</div>

@@ -1,1 +1,38 @@
-<p>users works!</p>
+<div class="container">
+  <div *ngIf="loading" class="loading">Loading...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!loading && accounts.length > 0">
+    <h2>User Accounts</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of accounts">
+          <td>{{ account.accountId }}</td>
+          <td>{{ account.fullName }}</td>
+          <td>{{ account.email }}</td>
+          <td>
+            {{ account.role?.roleName || 'N/A' }}
+          </td>
+          <td>
+            <span [ngClass]="{ 'active': account.isActive, 'inactive': !account.isActive }">
+              {{ account.isActive ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!loading && accounts.length === 0">
+    <p>No accounts found.</p>
+  </div>
+</div>
