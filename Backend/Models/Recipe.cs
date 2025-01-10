@@ -41,8 +41,4 @@ public partial class Recipe
 
     [Column("deleted_at")]
     public DateTime? DeletedAt { get; set; }
-
-    public virtual ICollection<Flavor> Flavors { get; set; } = new List<Flavor>();
-
-    public ICollection<ImageRecipe> ImageRecipes { get; set; } = new List<ImageRecipe>();
 }

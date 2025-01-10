@@ -109,24 +109,6 @@ namespace project3api_be.Controllers
             };
             _context.Recipes.Add(recipe);
             await _context.SaveChangesAsync();
-            //step 2: save recipe_flavour
-            if (recipesRequestDto.RecipeFlavors != null)
-            {
-                foreach (var recipeFlavor in recipesRequestDto.RecipeFlavors)
-                {
-                    var flavor = await _context.Flavors.FindAsync(recipeFlavor.FlavorId);
-                    if (flavor != null)
-                    {
-                        recipe.Flavors.Add(flavor);
-                    }
-                }
-            }
-            _context.RecipeFlavors.Add(new RecipeFlavor
-            {
-                RecipeId = recipe.RecipeId,
-                FlavorId = 1
-            });
-            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetRecipe), new { id = recipe.RecipeId }, recipe);
         }
 

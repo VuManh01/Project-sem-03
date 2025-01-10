@@ -15,6 +15,5 @@ namespace project3api_be.Dtos
         public string Status { get; set; } = "pending";
         public bool? IsPost { get; set; }
         public int Rating { get; set; }
-        public List<RecipeFlavor> RecipeFlavors { get; set; }
     }
 }

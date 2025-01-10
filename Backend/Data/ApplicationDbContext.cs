@@ -20,7 +20,6 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<Book> Books { get; set; }
     public virtual DbSet<Discount> Discounts { get; set; }
     public virtual DbSet<Feedback> Feedbacks { get; set; }
-    public virtual DbSet<Flavor> Flavors { get; set; }
     public virtual DbSet<ImageRecipe> ImageRecipes { get; set; }
     public virtual DbSet<MembershipService> MembershipServices { get; set; }
     public virtual DbSet<Order> Orders { get; set; }
@@ -30,7 +29,6 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<Token> Tokens { get; set; }
     public virtual DbSet<PaymentMember> PaymentMembers { get; set; }
     public virtual DbSet<Recipe> Recipes { get; set; }
-    public virtual DbSet<RecipeFlavor> RecipeFlavors { get; set; }
     public virtual DbSet<Role> Roles { get; set; }
     public virtual DbSet<Subscription> Subscriptions { get; set; }
 

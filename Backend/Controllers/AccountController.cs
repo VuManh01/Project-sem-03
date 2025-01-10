@@ -246,6 +246,32 @@ namespace project3api_be.Controllers
         //     return Ok(account);
         // }
 
+        // GET: api/account
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Account>>> GetAllAccounts()
+        {
+            var accounts = await _context.Accounts
+            .Include(a => a.Role)
+            .ToListAsync();
+
+            if (accounts == null || !accounts.Any())
+            {
+                return NotFound(new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "No accounts found."
+                });
+            }
+
+            // Remove sensitive information before returning
+            foreach (var account in accounts)
+            {
+                account.Password = null;
+            }
+
+            return Ok(accounts);
+        }
+
 
         // GET: api/account/detail-after-login
         [HttpGet("detail-after-login")]
