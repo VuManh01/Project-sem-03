@@ -24,6 +24,6 @@ public partial class OrderMembership
     [Column("updated_at")]
     public DateTime? UpdatedAt { get; set; }
 
-    public virtual MembershipService MembershipService { get; set; } = null!;
-    public virtual Discount? Discount { get; set; }
+    public virtual ICollection<MembershipService> MembershipService { get; set; } = null!;
+    public virtual ICollection<Discount>? Discount { get; set; }
 }

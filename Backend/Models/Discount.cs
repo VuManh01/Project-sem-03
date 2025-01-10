@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace project3api_be.Models;
 [Table("discounts")]
 public partial class Discount
-{   
+{
     [Column("discount_id")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int DiscountId { get; set; }
@@ -32,8 +32,5 @@ public partial class Discount
     [Column("deleted_at")]
 
     public DateTime? DeletedAt { get; set; }
-
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-    public virtual ICollection<OrderMembership> OrderMemberships  { get; set; } = new List<OrderMembership>();
 
 }

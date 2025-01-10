@@ -29,5 +29,4 @@ public partial class Subscription
     public DateTime? UpdatedAt { get; set; }
     public virtual Account Account { get; set; } = null!;
 
-    public virtual MembershipService MembershipService { get; set; } = null!;
 }
