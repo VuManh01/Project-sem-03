@@ -27,30 +27,30 @@
                 <div class="col-lg-9">
                     <div class="contact-form bg-light rounded p-5">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <div name="sentMessage" id="contactForm">
                             <div class="form-row">
                                 <div class="col-sm-6 control-group">
-                                    <input type="text" class="form-control p-4" id="name" (input)="onInputChange()" placeholder="Your Name" [ngModel]="fullname" required="required" data-validation-required-message="Please enter your name" />
+                                    <input type="text" class="form-control p-4" id="name" (input)="onInputChange()" placeholder="Your Name" [(ngModel)]="fullname" required="required" data-validation-required-message="Please enter your name" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="col-sm-6 control-group">
-                                    <input type="email" class="form-control p-4" id="email" (input)="onInputChange()" placeholder="Your Email" [ngModel]="email" required="required" data-validation-required-message="Please enter your email" />
+                                    <input type="email" class="form-control p-4" id="email" (input)="onInputChange()" placeholder="Your Email" [(ngModel)]="email" required="required" data-validation-required-message="Please enter your email" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <input type="text" class="form-control p-4" id="subject" (input)="onInputChange()" [ngModel]="title" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                                <input type="text" class="form-control p-4" id="subject" (input)="onInputChange()" [(ngModel)]="title" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
-                                <textarea class="form-control p-4" rows="6" id="message" (input)="onInputChange()" [ngModel]="content" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                                <textarea class="form-control p-4" rows="6" id="message" (input)="onInputChange()" [(ngModel)]="content" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                           <p class="help-block text-danger">{{textMessageErr}}</p>
                           <div>
                                 <button class="btn btn-primary btn-block py-3 px-5" id="sendMessageButton" (click)="handleSendFeedback()">Send Message</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
