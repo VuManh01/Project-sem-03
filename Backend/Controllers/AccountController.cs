@@ -12,6 +12,7 @@ using System.Security.Claims;
 using System.Net;
 using RestSharp;
 using project3api_be.Services;
+using Project_sem_03.Backend.Dtos;
 
 namespace project3api_be.Controllers
 {
@@ -29,6 +30,7 @@ namespace project3api_be.Controllers
             _context = context;
             // _tokenService = tokenService;
         }
+
 
         // Tạo tài khoản cho User
         // POST: api/account/register
@@ -330,7 +332,41 @@ namespace project3api_be.Controllers
             });
         }
 
+        // PUT: api/account/update
 
+        [HttpPut("update")]
+        public async Task<ActionResult> UpdateAccount([FromBody] UpdateAccountDto updateAccountDto)
+        {
+            var user = await _context.Accounts.FirstOrDefaultAsync(u => u.AccountId == updateAccountDto.AccountId);
+
+            if (user == null)
+            {
+                return BadRequest(new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "User not found."
+                });
+            }
+
+            // Update account details
+            user.FullName = updateAccountDto.FullName ?? user.FullName;
+            user.Email = updateAccountDto.Email ?? user.Email;
+            user.Password = updateAccountDto.Password != null ? BCrypt.Net.BCrypt.HashPassword(updateAccountDto.Password) : user.Password;
+            user.IsActive = updateAccountDto.IsActive ?? user.IsActive;
+            user.RoleId = updateAccountDto.RoleId ?? user.RoleId;
+            // user.Subscriptions.FirstOrDefault().StartDate = updateAccountDto.StartDate ?? user.Subscriptions.FirstOrDefault().StartDate;
+            // user.Subscriptions.FirstOrDefault().EndDate = updateAccountDto.EndDate ?? user.Subscriptions.FirstOrDefault().EndDate;
+            user.UpdatedAt = DateTime.Now;
+
+            _context.Accounts.Update(user);
+            await _context.SaveChangesAsync();
+
+            return Ok(new AuthResponseDto
+            {
+                IsSuccess = true,
+                Message = "Account updated successfully."
+            });
+        }
 
         // POST: api/account/logout
         // [Authorize(Roles = "Admin,User")]
