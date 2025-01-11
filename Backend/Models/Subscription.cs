@@ -25,7 +25,7 @@ public partial class Subscription
     public decimal Price { get; set; }
     [Column("created_at")]
     public DateTime? CreatedAt { get; set; }
-    [Column("update_at")]
+    [Column("updated_at")]
     public DateTime? UpdatedAt { get; set; }
     public virtual Account Account { get; set; } = null!;
     public virtual MembershipService MembershipService { get; set; } = null!;

@@ -290,6 +290,23 @@ namespace project3api_be.Controllers
                             orderMembership.UpdatedAt = DateTime.Now;
                             paymentStatus = "success";
                             message = "Payment completed";
+
+
+                            //create subcription
+                            var account = await _context.Accounts
+                                .FirstOrDefaultAsync(a => a.OrderMembershipId == orderMembershipId);
+                            var membershipService = await _context.MembershipServices
+                                .FirstOrDefaultAsync(ms => ms.MembershipServiceId == orderMembership.MembershipServiceId);
+
+                            var subscription = new Subscription
+                            {
+                                AccountId = account.AccountId,
+                                MembershipServiceId = membershipService.MembershipServiceId,
+                                StartDate = DateOnly.FromDateTime(DateTime.Now),
+                                EndDate = DateOnly.FromDateTime(DateTime.Now.AddDays(membershipService.DurationInDay)),
+                                CreatedAt = DateTime.Now,
+                                UpdatedAt = DateTime.Now
+                            };
                         }
                         else
                         {
