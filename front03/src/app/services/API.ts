@@ -20,4 +20,7 @@ export const API = {
   //discount
   //get discount by name
   GET_DISCOUNT_BY_NAME: 'api/Discount/FindByName',
+
+  //feedback
+  SEND_FEEDBACK:'api/Feedback'
 }
