@@ -72,6 +72,21 @@ namespace project3api_be.Controllers
             _context.Accounts.Add(account);
             await _context.SaveChangesAsync();
 
+            var membershipService = await _context.MembershipServices.FirstOrDefaultAsync(m => m.MembershipServiceId == orderMember.MembershipServiceId);
+            //create subscription
+            var subscription = new Subscription
+            {
+                AccountId = account.AccountId,
+                MembershipServiceId = orderMember.MembershipServiceId,
+                Status = "Active",
+                StartDate = DateOnly.FromDateTime(DateTime.Now), //curent regis
+                EndDate = DateOnly.FromDateTime(DateTime.Now.AddDays(membershipService.DurationInDay)), //current regis + duration in day
+                Price = orderMember.Price,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
+            _context.Subscriptions.Add(subscription);
+
             return Ok(new AuthResponseDto
             {
                 IsSuccess = true,

@@ -80,9 +80,9 @@ namespace project3api_be.Controllers
                 {
                     MembershipServiceId = request.MembershipServiceId,
                     Price = request.Price,
-                    Status = "pending",
                     OrderStatus = "pending",
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                   
                 };
                 _context.OrderMemberships.Add(orderMembership);
                 await _context.SaveChangesAsync();
@@ -100,7 +100,7 @@ namespace project3api_be.Controllers
                 _context.PaymentMembers.Add(paymentMember);
                 await _context.SaveChangesAsync();
 
-                // 3. Tạo VNPay payment URL
+                // 4. Tạo VNPay payment URL
                 var paymentRequest = new VnPayRequestDto
                 {
                     OrderId = orderMembership.OrderMembershipId.ToString(),
@@ -280,6 +280,7 @@ namespace project3api_be.Controllers
                         .FirstOrDefaultAsync(pm => pm.OrderMembershipId == orderMembershipId);
                     if (orderMembership != null)
                     {
+                        
                         // Nếu thanh toán thành công, cập nhật trạng thái Order thành 'complete'
                         if (response.Success)
                         {

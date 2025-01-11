@@ -42,6 +42,6 @@ public partial class Account
     public virtual ICollection<Token> Tokens { get; set; } = new List<Token>();
     // Quan hệ n-1 với bảng OrderMemberships
     [ForeignKey("OrderMembershipId")]
-    public virtual ICollection<OrderMembership>? OrderMembership { get; set; }
+    public virtual OrderMembership? OrderMembership { get; set; }
     
 }

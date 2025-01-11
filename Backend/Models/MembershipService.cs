@@ -5,7 +5,7 @@ namespace project3api_be.Models;
 
 [Table("membership_services")]
 public partial class MembershipService
-{   
+{
     [Column("membership_service_id")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int MembershipServiceId { get; set; }
@@ -23,5 +23,6 @@ public partial class MembershipService
     public DateTime? UpdatedAt { get; set; }
 
     public virtual ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
+    public virtual ICollection<OrderMembership> OrderMemberships { get; set; } = new List<OrderMembership>();
 
 }

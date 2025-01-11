@@ -16,12 +16,13 @@ namespace project3api_be.Controllers
             _context = context;
         }
 
-        // GET: api/MembershipService
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<MembershipService>>> GetMembershipServices()
-        {
-            return await _context.MembershipServices.ToListAsync();
-        }
+       
+    // GET: api/MembershipService
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<MembershipService>>> GetMembershipServices()
+    {
+        return await _context.MembershipServices.ToListAsync();
+    }
 
         // GET: api/MembershipService/5
         [HttpGet("{id}")]

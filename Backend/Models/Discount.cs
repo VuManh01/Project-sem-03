@@ -33,4 +33,6 @@ public partial class Discount
 
     public DateTime? DeletedAt { get; set; }
 
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    public virtual ICollection<OrderMembership> OrderMemberships { get; set; } = new List<OrderMembership>();
 }

@@ -20,9 +20,9 @@ public class BookController : ControllerBase
     }
     // GET: api/Book
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
+    public async Task<ActionResult<List<Book>>> GetBooks()
     {
-        return await _context.Books.ToListAsync();
+        return Ok(await _context.Books.ToListAsync());
     }
     // GET: api/Book/limit/1
     [HttpGet("limit/1")]
@@ -33,7 +33,7 @@ public class BookController : ControllerBase
         {
             return NotFound();
         }
-        return book;
+        return Ok(book);
     }
     // GET: api/Book/5
     [HttpGet("{id}")]
@@ -44,7 +44,7 @@ public class BookController : ControllerBase
         {
             return NotFound();
         }
-        return book;
+        return Ok(book);
     }
     // PUT: api/Book/5
     [HttpPut("{id}")]
