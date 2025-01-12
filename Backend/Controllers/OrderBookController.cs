@@ -4,6 +4,7 @@ using project3api_be.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using project3api_be.Data;
 
 namespace project3api_be.Controllers
 {
@@ -11,9 +12,10 @@ namespace project3api_be.Controllers
     [ApiController]
     public class OrderBookController : ControllerBase
     {
-        private readonly DbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public OrderBookController(DbContext context)
+
+        public OrderBookController(ApplicationDbContext context)
         {
             _context = context;
         }
