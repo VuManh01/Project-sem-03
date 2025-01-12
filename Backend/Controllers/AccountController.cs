@@ -88,7 +88,7 @@ namespace project3api_be.Controllers
                 UpdatedAt = DateTime.Now
             };
             _context.Subscriptions.Add(subscription);
-
+            await _context.SaveChangesAsync();
             return Ok(new AuthResponseDto
             {
                 IsSuccess = true,
@@ -98,7 +98,6 @@ namespace project3api_be.Controllers
 
         // Tạo tài khoản cho Admin
         // POST: api/account/register-admin
-        [AllowAnonymous]
         [HttpPost("register-admin")]
         public async Task<ActionResult> RegisterAdmin([FromBody] RegisterDto registerDto)
         {

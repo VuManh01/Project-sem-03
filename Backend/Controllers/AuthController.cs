@@ -44,8 +44,8 @@ public class AuthController : ControllerBase
         }
         // Tìm tài khoản dựa trên email
         var account = await _context.Accounts
-       .Include(a => a.Role)  // Thêm dòng này để load Role
-       .FirstOrDefaultAsync(a => a.Email == request.Email);
+           .Include(a => a.Role)  // Thêm dòng này để load Role
+           .FirstOrDefaultAsync(a => a.Email == request.Email && a.RoleId == 2 && a.IsActive == true);
         if (account == null)
         {
             return Unauthorized("Invalid credentials");
@@ -55,23 +55,6 @@ public class AuthController : ControllerBase
         {
             return Unauthorized("Invalid credentials");
         }
-
-        // // tạo Claims
-        // var claims = new[] {
-        //     new Claim(ClaimTypes.NameIdentifier, account.AccountId.ToString()),
-        //     new Claim(ClaimTypes.Email, account.Email),
-        //     new Claim(ClaimTypes.Role, account.Role?.RoleName ?? "No Role")
-        // };
-        //  var claimsIdentity = new ClaimsIdentity(claims, "login");
-
-        // // Tạo ClaimsPrincipal
-        // var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-
-        // // Đăng nhập người dùng
-        // await HttpContext.SignInAsync("Cookies",claimsPrincipal);
-
-        // Tạo JWT token nếu mật khẩu chính xác
-        // string jwt = _jwtService.GenerateToken(account);
 
         var isLoggerIn = true;
         var dataUser = new
@@ -119,4 +102,75 @@ public class AuthController : ControllerBase
             // } 
         });
     }
+
+
+    [HttpPost("login-admin")]
+    public async Task<IActionResult> LoginAdmin([FromBody] LoginRequest request)
+    {
+        // Kiểm tra đầu vào
+        if (request == null || string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+        {
+            return BadRequest("Email and password are required");
+        }
+        // Tìm tài khoản dựa trên email
+        var account = await _context.Accounts
+           .Include(a => a.Role)  // Thêm dòng này để load Role
+           .FirstOrDefaultAsync(a => a.Email == request.Email && a.RoleId == 1 && a.IsActive == true);
+        if (account == null)
+        {
+            return Unauthorized("Invalid credentials");
+        }
+        // So sánh mật khẩu đã mã hóa
+        if (!BCrypt.Net.BCrypt.Verify(request.Password, account.Password))
+        {
+            return Unauthorized("Invalid credentials");
+        }
+
+        var isLoggerIn = true;
+        var dataUser = new
+        {
+            accountId = account.AccountId,
+            email = account.Email,
+            role = account.Role?.RoleName ?? "No Role",
+            fullName = account.FullName
+        };
+
+        // Serialize the dataUser object to a JSON string
+        var dataUserJson = JsonSerializer.Serialize(dataUser);
+
+        // Set cookie with JSON string and expiration time of 1 hour
+        Response.Cookies.Append("dataUser", dataUserJson, new CookieOptions
+        {
+            HttpOnly = false,
+            SameSite = SameSiteMode.None,
+            Secure = true,
+            Expires = DateTimeOffset.UtcNow.AddHours(1)
+        });
+
+        Response.Cookies.Append("isLoggedIn", isLoggerIn.ToString(), new CookieOptions
+        {
+            HttpOnly = false,
+            SameSite = SameSiteMode.None,
+            Secure = true,
+            Expires = DateTimeOffset.UtcNow.AddHours(1)
+        });
+        return Ok(new AuthResponseDto
+        {
+            // Token = jwt,
+            IsSuccess = true,
+            Message = "Login successful",
+            Role = account.Role?.RoleName ?? "No Role",
+            AccountId = account.AccountId,
+            Email = account.Email,
+            FullName = account.FullName,
+
+            // User = new
+            // {
+            //     account.FullName,
+            //     account.Email,
+            //     RoleName = account.Role?.RoleName ?? "No Role"
+            // } 
+        });
+    }
+
 }

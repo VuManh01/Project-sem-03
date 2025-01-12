@@ -82,7 +82,7 @@ namespace project3api_be.Controllers
                     Price = request.Price,
                     OrderStatus = "pending",
                     CreatedAt = DateTime.Now,
-                   
+
                 };
                 _context.OrderMemberships.Add(orderMembership);
                 await _context.SaveChangesAsync();
@@ -280,7 +280,7 @@ namespace project3api_be.Controllers
                         .FirstOrDefaultAsync(pm => pm.OrderMembershipId == orderMembershipId);
                     if (orderMembership != null)
                     {
-                        
+
                         // Nếu thanh toán thành công, cập nhật trạng thái Order thành 'complete'
                         if (response.Success)
                         {
@@ -290,23 +290,6 @@ namespace project3api_be.Controllers
                             orderMembership.UpdatedAt = DateTime.Now;
                             paymentStatus = "success";
                             message = "Payment completed";
-
-
-                            //create subcription
-                            var account = await _context.Accounts
-                                .FirstOrDefaultAsync(a => a.OrderMembershipId == orderMembershipId);
-                            var membershipService = await _context.MembershipServices
-                                .FirstOrDefaultAsync(ms => ms.MembershipServiceId == orderMembership.MembershipServiceId);
-
-                            var subscription = new Subscription
-                            {
-                                AccountId = account.AccountId,
-                                MembershipServiceId = membershipService.MembershipServiceId,
-                                StartDate = DateOnly.FromDateTime(DateTime.Now),
-                                EndDate = DateOnly.FromDateTime(DateTime.Now.AddDays(membershipService.DurationInDay)),
-                                CreatedAt = DateTime.Now,
-                                UpdatedAt = DateTime.Now
-                            };
                         }
                         else
                         {
