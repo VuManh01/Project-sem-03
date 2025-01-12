@@ -1,38 +1,56 @@
-<div class="container">
-  <div *ngIf="loading" class="loading">Loading...</div>
-  <div *ngIf="error" class="error">{{ error }}</div>
+<div class="users-container">
+  <h2>User Management</h2>
 
-  <div *ngIf="!loading && accounts.length > 0">
-    <h2>User Accounts</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Full Name</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let account of accounts">
-          <td>{{ account.accountId }}</td>
-          <td>{{ account.fullName }}</td>
-          <td>{{ account.email }}</td>
-          <td>
-            {{ account.role?.roleName || 'N/A' }}
-          </td>
-          <td>
-            <span [ngClass]="{ 'active': account.isActive, 'inactive': !account.isActive }">
-              {{ account.isActive ? 'Active' : 'Inactive' }}
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- Success Notification -->
+  <div *ngIf="editSuccess" class="notification success">
+    <p>Changes saved successfully!</p>
   </div>
 
-  <div *ngIf="!loading && accounts.length === 0">
-    <p>No accounts found.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Full Name</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let account of paginatedAccounts">
+        <td>{{ account.accountId }}</td>
+        <td *ngIf="!isEditing || selectedAccount?.accountId !== account.accountId">{{ account.email }}</td>
+        <td *ngIf="isEditing && selectedAccount?.accountId === account.accountId">
+          <input [(ngModel)]="selectedAccount.email" />
+        </td>
+        <td *ngIf="!isEditing || selectedAccount?.accountId !== account.accountId">{{ account.fullName }}</td>
+        <td *ngIf="isEditing && selectedAccount?.accountId === account.accountId">
+          <input [(ngModel)]="selectedAccount.fullName" />
+        </td>
+        <td *ngIf="!isEditing || selectedAccount?.accountId !== account.accountId">{{ account.role.roleName }}</td>
+        <td *ngIf="isEditing && selectedAccount?.accountId === account.accountId">
+          <select [(ngModel)]="selectedAccount.roleId">
+            <option value="1">Admin</option>
+            <option value="2">User</option>
+          </select>
+        </td>
+        <td>
+          <button *ngIf="!isEditing || selectedAccount?.accountId !== account.accountId" (click)="editAccount(account)">
+            Edit
+          </button>
+          <button *ngIf="isEditing && selectedAccount?.accountId === account.accountId" (click)="saveAccount()">Save</button>
+          <button *ngIf="isEditing && selectedAccount?.accountId === account.accountId" (click)="cancelEdit()">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Prev</button>
+    <span>{{ currentPage }} / {{ getTotalPages() }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= totalItems">Next</button>
   </div>
 </div>

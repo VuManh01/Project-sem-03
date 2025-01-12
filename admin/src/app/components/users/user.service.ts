@@ -3,18 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AccountService {
-  private apiUrl = 'http://localhost:5211/api/account';
+  private apiUrl = 'http://localhost:5211/api/account'; // Thay URL phù hợp với backend
 
   constructor(private http: HttpClient) {}
 
-  getAllAccounts(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getAllAccounts(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}`);
   }
 
-  updateRole(accountId: string, newRole: string): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${accountId}/role`, { role: newRole });
+  updateAccount(account: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/update`, account);
   }
 }

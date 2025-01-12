@@ -22,16 +22,16 @@ export class LoginComponent implements OnInit {
     //reset data variable
     this.email = '';
     this.password = '';
-    // this.checkLoggedIn();
-    // setInterval(() => {
-    //   this.checkLoggedIn();
-    // }, 1000);
+    this.checkLoggedIn();
+    setInterval(() => {
+      this.checkLoggedIn();
+    }, 1000);
   }
 
   // check if user is logged in, không cho người dùng vô được login page nếu đã đăng nhập
   checkLoggedIn() {
     if (this.cookieService.get('isLoggedIn')) {
-      // this.router.navigate(['/']);
+      this.router.navigate(['/']);
     }
   }
 
