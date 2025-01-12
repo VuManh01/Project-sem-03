@@ -99,11 +99,9 @@ namespace project3api_be.Controllers
             {
                 RecipeName = recipesRequestDto.RecipeName,
                 Content = recipesRequestDto.Content,
-                Difficulty = recipesRequestDto.Difficulty,
+                ImageLink = recipesRequestDto.ImageLink,
                 SubmittedBy = recipesRequestDto.SubmittedBy,
                 Status = recipesRequestDto.Status,
-                IsPost = recipesRequestDto.IsPost,
-                Rating = recipesRequestDto.Rating,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now
             };

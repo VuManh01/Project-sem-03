@@ -9,11 +9,9 @@ namespace project3api_be.Dtos
     public class RecipesRequestDto
     {
         public string RecipeName { get; set; } = null!;
-        public string Difficulty { get; set; } = "Easy";
+        public string ImageLink { get; set; } = null!;  
         public string Content { get; set; } = null!;
         public string SubmittedBy { get; set; } = null!;
         public string Status { get; set; } = "pending";
-        public bool? IsPost { get; set; }
-        public int Rating { get; set; }
     }
 }
