@@ -30,6 +30,7 @@ import { ChocolateTruffleComponent } from './icecream-recipes/chocolate-truffle/
 import { KiwiComponent } from './icecream-recipes/kiwi/kiwi.component';
 import { PineappleComponent } from './icecream-recipes/pineapple/pineapple.component';
 import { PistachioComponent } from './icecream-recipes/pistachio/pistachio.component';
+import { LogRestricComponent } from './components/log-restric/log-restric.component';
 
 const routes: Routes = [
   {path : '', component : HomeComponent,data: { animation: 'HomePage' }},
@@ -61,6 +62,7 @@ const routes: Routes = [
   {path : 'pista', component : PistachioComponent},
   {path : 'kiwi', component : KiwiComponent},
   {path : 'pine', component : PineappleComponent},
+  {path : 'res', component : LogRestricComponent},
   {path: '**', component: PageNotFoundComponent },
 ];
 

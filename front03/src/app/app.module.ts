@@ -40,6 +40,7 @@ import { KiwiComponent } from './icecream-recipes/kiwi/kiwi.component';
 import { PineappleComponent } from './icecream-recipes/pineapple/pineapple.component';
 import { FruitAndNutComponent } from './icecream-recipes/fruit-and-nut/fruit-and-nut.component';
 import { CashewCaramelCrunchComponent } from './icecream-recipes/cashew-caramel-crunch/cashew-caramel-crunch.component';
+import { LogRestricComponent } from './components/log-restric/log-restric.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { CashewCaramelCrunchComponent } from './icecream-recipes/cashew-caramel-
      PineappleComponent,
      FruitAndNutComponent,
      CashewCaramelCrunchComponent,
+     LogRestricComponent,
 
   ],
   imports: [
