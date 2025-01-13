@@ -6,12 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AccountService {
-  private apiUrl = 'http://localhost:5211/api/account'; // Thay URL phù hợp với backend
+  private apiUrl = 'http://localhost:5211/api/account'; // Replace with correct URL for accounts
+  private subscriptionUrl = 'http://localhost:5211/api/subcription'; // Replace with correct URL for subscriptions
 
   constructor(private http: HttpClient) {}
 
   getAllAccounts(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}`);
+  }
+
+  getAllSubscriptions(): Observable<any> {
+    return this.http.get<any>(`${this.subscriptionUrl}`);
   }
 
   updateAccount(account: any): Observable<any> {

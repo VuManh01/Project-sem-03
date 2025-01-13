@@ -19,6 +19,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { RecipesComponent } from './components/up-recipes/up-recipes.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +37,15 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
      SignUpComponent,
      PaymentComponent,
      PageNotFoundComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RecipesComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,136 @@
+/* Thiết lập kiểu chữ và nền cho toàn bộ trang */
+body {
+  font-family: 'Times New Roman', serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+}
+
+/* Khung form */
+.form {
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 1000px;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+  text-align: left;
+
+}
+
+/* Tiêu đề */
+h1 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Các nhãn cho trường */
+label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+  font-weight: normal;
+}
+
+/* Các trường nhập liệu */
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Hiệu ứng khi focus vào các trường nhập liệu */
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: #8d6e63;
+  background-color: #fff;
+}
+
+/* Các trường chọn lựa */
+select {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+/* Cải thiện bố cục cho phần nội dung CKEditor */
+#content {
+  background-color: #fafafa;
+  padding: 15px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+/* Checkbox */
+#membership {
+  margin-right: 10px;
+}
+
+/* Nút bấm */
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  background-color: #8d6e63;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng hover cho nút bấm */
+button:hover {
+  background-color: #7b5e50;
+}
+
+/* Thêm không gian giữa các phần tử */
+br {
+  margin-bottom: 15px;
+}
+@import 'ckeditor5/ckeditor5.css';
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@media print {
+  body {
+    margin: 0 !important;
+  }
+}
+
+.main-container {
+  font-family: 'Lato';
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ck-content {
+  font-family: 'Lato';
+  line-height: 1.6;
+  min-height: 500px;
+  word-break: break-word;
+  padding: 0 50px;
+}
+.editor-container_classic-editor .editor-container__editor {
+  max-width: 795px;
+}
+

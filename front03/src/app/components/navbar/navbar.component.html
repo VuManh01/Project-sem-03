@@ -8,7 +8,7 @@
                   <span class="text-white">|</span>
                   <a class="text-white px-3" [routerLink]="">Help</a>
                   <span class="text-white">|</span>
-                  <a class="text-white pl-3" [routerLink]="">Support</a>
+                  <a *ngIf="dataUser" class="text-white pl-3" [routerLink]="['/up-recipes']">Upload</a>
               </div>
           </div>
           <div class="col-md-6 text-center text-lg-right">

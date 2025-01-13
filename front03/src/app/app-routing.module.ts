@@ -11,6 +11,7 @@ import { VanillaComponent } from './icecream-recipes/vanilla/vanilla.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
+import { RecipesComponent } from './components/up-recipes/up-recipes.component';
 
 const routes: Routes = [
   {path : '', component : HomeComponent,data: { animation: 'HomePage' }},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path : 'vanilla', component : VanillaComponent},
   {path : 'signup/:id', component : SignUpComponent},
   {path : 'payment', component : PaymentComponent},
+  {path : 'up-recipes', component : RecipesComponent},
   {path: '**', component: PageNotFoundComponent },
 ];
 

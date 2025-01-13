@@ -13,6 +13,8 @@
         <th>Email</th>
         <th>Full Name</th>
         <th>Role</th>
+        <th>Start Date</th>
+        <th>End Date</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -34,6 +36,8 @@
             <option value="2">User</option>
           </select>
         </td>
+        <td>{{ account.startDate | date }}</td> <!-- Display start date -->
+        <td>{{ account.endDate | date }}</td>   <!-- Display end date -->
         <td>
           <button *ngIf="!isEditing || selectedAccount?.accountId !== account.accountId" (click)="editAccount(account)">
             Edit

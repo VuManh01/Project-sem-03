@@ -1,1 +1,100 @@
-<p>order works!</p>
+<div class="order-container">
+  <h2>Order List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Total Price</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Full Name</th>
+        <th>Delivery Address</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of paginatedOrders; let i = index">
+        <td>{{ order.orderId }}</td>
+        <td>{{ order.totalPrice | currency }}</td>
+        <!-- View and Edit logic stays the same -->
+        <ng-container *ngIf="editIndex !== i; else editMode">
+          <td>{{ order.email }}</td>
+          <td>{{ order.phoneNumber }}</td>
+          <td>{{ order.fullName }}</td>
+          <td>{{ order.deliveryAddress }}</td>
+          <td>{{ order.status }}</td>
+          <td>
+            <button (click)="startEditing(i)">Edit</button>
+          </td>
+        </ng-container>
+
+        <!-- Edit mode -->
+        <ng-template #editMode>
+          <td>
+            <input [(ngModel)]="order.email" />
+          </td>
+          <td>
+            <input [(ngModel)]="order.phoneNumber" />
+          </td>
+          <td>
+            <input [(ngModel)]="order.fullName" />
+          </td>
+          <td>{{ order.deliveryAddress }}</td>
+          <td>
+            <select [(ngModel)]="order.status">
+              <option *ngFor="let status of statuses" [value]="status">
+                {{ status }}
+              </option>
+            </select>
+          </td>
+          <td>
+            <button (click)="saveOrder(order, i)">Save</button>
+            <button (click)="cancelEditing()">Cancel</button>
+          </td>
+        </ng-template>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages"
+    >
+      Next
+    </button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

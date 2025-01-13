@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './user.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -8,15 +9,18 @@ import { AccountService } from './user.service';
 })
 export class UsersComponent implements OnInit {
   accounts: any[] = [];
+  subscriptions: any[] = [];
+  combinedData: any[] = [];  // To store merged account and subscription data
   isEditing: boolean = false;
   selectedAccount: any = null;
   editSuccess: boolean = false; // To track success notification visibility
   currentPage = 1;  // Current page, default is 1
   itemsPerPage = 10; // Number of items per page
   totalItems = 100;  // Total items (this should come from your data or API)
+
   get paginatedAccounts() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.accounts.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.combinedData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   nextPage() {
@@ -38,17 +42,37 @@ export class UsersComponent implements OnInit {
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.fetchAccounts();
+    this.fetchData();
   }
 
-  fetchAccounts(): void {
-    this.accountService.getAllAccounts().subscribe({
+  fetchData(): void {
+    forkJoin({
+      accounts: this.accountService.getAllAccounts(),
+      subscriptions: this.accountService.getAllSubscriptions(),
+    }).subscribe({
       next: (data) => {
-        this.accounts = data;
+        this.accounts = data.accounts;
+        this.subscriptions = data.subscriptions;
+
+        // Combine the accounts and subscriptions data
+        this.combineData();
       },
       error: (err) => {
-        console.error('Error fetching accounts:', err);
+        console.error('Error fetching data:', err);
       },
+    });
+  }
+
+  combineData(): void {
+    // Assuming that each subscription corresponds to an account by matching some identifier
+    this.combinedData = this.accounts.map((account) => {
+      // Find the corresponding subscription for this account
+      const subscription = this.subscriptions.find((sub) => sub.accountId === account.accountId);
+      return {
+        ...account,
+        startDate: subscription ? subscription.startDate : null,
+        endDate: subscription ? subscription.endDate : null,
+      };
     });
   }
 
@@ -60,7 +84,7 @@ export class UsersComponent implements OnInit {
   saveAccount(): void {
     this.accountService.updateAccount(this.selectedAccount).subscribe({
       next: () => {
-        this.fetchAccounts();
+        this.fetchData();
         this.isEditing = false;
         this.selectedAccount = null;
 

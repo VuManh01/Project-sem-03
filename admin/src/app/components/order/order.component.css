@@ -1,0 +1,175 @@
+/* Tổng thể */
+.order-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 25px;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+.order-container h2 {
+  margin-bottom: 20px;
+  color: #222;
+  font-size: 30px;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Bảng */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+thead {
+  background: #007bff;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+thead th {
+  padding: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+tbody tr {
+  background-color: #fff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+tbody tr:hover {
+  background: #f4f8fc;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+tbody td {
+  padding: 15px;
+  font-size: 16px;
+  color: #555;
+  border-bottom: 1px solid #eaeaea;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Nút */
+button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:focus {
+  outline: none;
+}
+
+button.edit {
+  background: linear-gradient(135deg, #28a745, #218838);
+  color: white;
+  box-shadow: 0 4px 6px rgba(40, 167, 69, 0.3);
+}
+
+button.edit:hover {
+  background: linear-gradient(135deg, #218838, #1e7e34);
+  box-shadow: 0 6px 12px rgba(40, 167, 69, 0.5);
+}
+
+button.save {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+}
+
+button.save:hover {
+  background: linear-gradient(135deg, #0056b3, #004085);
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+}
+
+button.cancel {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  box-shadow: 0 4px 6px rgba(220, 53, 69, 0.3);
+}
+
+button.cancel:hover {
+  background: linear-gradient(135deg, #c82333, #bd2130);
+  box-shadow: 0 6px 12px rgba(220, 53, 69, 0.5);
+}
+
+/* Input và Select */
+input,
+select {
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .order-container {
+    padding: 20px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  thead th {
+    padding: 12px;
+  }
+
+  tbody td {
+    padding: 12px;
+  }
+
+  button {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
+.pagination-controls {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.pagination-controls button {
+  margin: 0 5px;
+  padding: 5px 10px;
+}
+
+.pagination-controls span {
+  margin: 0 10px;
+  font-weight: bold;
+}

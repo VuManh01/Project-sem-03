@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Flavor and Upload Content</title>
+    <link rel="stylesheet" href="up-recipes.component.css">
+
+</head>
+<body>
+    <div>
+        <h1>Select Flavor and Upload Content</h1>
+        <div class="form">
+          <label for="name">Enter Name:</label>
+          <input type="text" id="name" name="name" required>
+          <br>
+          <label for="submittedBy">Submitted By:</label>
+          <input type="text" id="submittedBy" name="submittedBy" required>
+          <br>
+
+            <!--Content-->
+            <label for="content">Enter Content:</label>
+          <div class="main-container" id="content">
+            <div class="editor-container editor-container_classic-editor" #editorContainerElement>
+              <div class="editor-container__editor">
+                <div #editorElement>
+                  <ckeditor [editor]="Editor" [config]="config" *ngIf="isLayoutReady" [(ngModel)]="editorData" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <button (click)="getEditorData()">Lấy dữ liệu từ CKEditor</button>
+          <button type="submit">Submit</button>
+        </div>
+    </div>
+</body>
+</html>
