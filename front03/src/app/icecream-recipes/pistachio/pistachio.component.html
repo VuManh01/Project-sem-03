@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Ice Cream Recipe</title>
+    <link rel="stylesheet" href="pistachio.component.css">
+</head>
+<body>
+    <header>
+        <h1>Pistachio Ice Cream Recipe</h1>
+    </header>
+
+    <div class="content">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#step1">Step 1:Add </a></li>
+                <li><a href="#step2">Step 2:Pour</a></li>
+                <li><a href="#step3">Step 3:Stir </a></li>
+                <li><a href="#step4">Step 4:Enjoy </a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>2 cups heavy cream</li>
+                <li>1 cup whole milk</li>
+                <li>3/4 cup sugar</li>
+                <li>1 teaspoon vanilla extract</li>
+                <li>A pinch of salt</li>
+                <li>Whole shelled pistachios </li>
+            </ul>
+
+            <h2>Tools</h2>
+            <ul>
+                <li>Ice cream maker (if available)</li>
+                <li>Large mixing bowl</li>
+                <li>Whisk</li>
+            </ul>
+
+            <h2>Instructions</h2>
+            <div class="steps">
+                <p id="step1"><strong>Step 1:</strong>Add ½ cup pistachios and ¾ cup sugar to a food processor and process until finely chopped and blended. </p>
+                <img src="https://tastesbetterfromscratch.com/wp-content/uploads/2020/08/Pistachio-Ice-Cream.jpg" alt="Mixing ingredients together">
+
+                <p id="step2"><strong>Step 2:</strong>Pour the custard through a fine-mesh sieve set over a bowl; discard what’s left in the strainer. Cover mixture and refrigerate for several hours or overnight, until completely chilled. (Depending on the your ice cream maker, you may need to freeze the bowl of the ice cream maker overnight as well). </p>
+                <img src="https://tastesbetterfromscratch.com/wp-content/uploads/2020/08/Pistachio-Ice-Cream-10.jpg" alt="Adding vanilla extract">
+
+                <p id="step3"><strong>Step 3:</strong>Stir in remaining ½ cup pistachios. Transfer the ice cream to a container, cover and freeze until firm, at least 3 hours. </p>
+                <img src="https://tastesbetterfromscratch.com/wp-content/uploads/2020/08/Pistachio-Ice-Cream-2.jpg" alt="Ice cream maker in action">
+
+                <p id="step4"><strong>Step 4:</strong>Enjoy! </p>
+                <img src="https://tastesbetterfromscratch.com/wp-content/uploads/2020/08/Pistachio-Ice-Cream-5-500x500.jpg" alt="Finished vanilla ice cream">
+            </div>
+        </div>
+    </div>
+    <div class="feedbacks-container">
+      <h2>Feedbacks</h2>
+      <div class="feedbacks">
+        <div *ngFor="let feedback of visibleFeedbacks" class="feedback">
+          <p><strong>Name:</strong> {{ feedback.fullName }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>email:</strong> {{ feedback.email }}</p>
+          <p><strong>Title:</strong> {{ feedback.title }}</p>
+          <p><strong>Content:</strong> {{ feedback.content }}</p>
+
+        </div>
+      </div>
+      <div class="feedback-navigation">
+        <button (click)="prevFeedback()" [disabled]="currentIndex === 0">← Prev</button>
+        <button (click)="nextFeedback()" [disabled]="currentIndex + 3 >= feedbacks.length">Next →</button>
+      </div>
+    </div>
+
+</body>
+</html>

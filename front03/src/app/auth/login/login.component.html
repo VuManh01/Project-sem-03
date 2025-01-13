@@ -64,7 +64,7 @@
                 [ngClass]="isPwValid"
               />
             </div>
-            <div class="text"><a href="#">Forgot password?</a></div>
+            <div class="text"><a  [routerLink]="['/forgot']">Forgot password?</a></div>
 
             <div class="error-pw err">
               {{ errMessagePw }}

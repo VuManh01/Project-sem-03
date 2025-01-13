@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Ice Cream Recipe</title>
+    <link rel="stylesheet" href="vanilla.component.css">
+</head>
+<body>
+    <header>
+        <h1> Recipe</h1>
+    </header>
+
+    <div class="content">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#step1">Step 1: </a></li>
+                <li><a href="#step2">Step 2: </a></li>
+                <li><a href="#step3">Step 3: </a></li>
+                <li><a href="#step4">Step 4: </a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>2 cups heavy cream</li>
+                <li>1 cup whole milk</li>
+                <li>3/4 cup sugar</li>
+                <li>1 teaspoon vanilla extract</li>
+                <li>A pinch of salt</li>
+            </ul>
+
+            <h2>Tools</h2>
+            <ul>
+                <li>Ice cream maker (if available)</li>
+                <li>Large mixing bowl</li>
+                <li>Whisk</li>
+            </ul>
+
+            <h2>Instructions</h2>
+            <div class="steps">
+                <p id="step1"><strong>Step 1:</strong> </p>
+                <img src="" alt="Mixing ingredients together">
+
+                <p id="step2"><strong>Step 2:</strong> </p>
+                <img src="" alt="Adding vanilla extract">
+
+                <p id="step3"><strong>Step 3:</strong> </p>
+                <img src="" alt="Ice cream maker in action">
+
+                <p id="step4"><strong>Step 4:</strong> </p>
+                <img src="" alt="Finished vanilla ice cream">
+            </div>
+        </div>
+    </div>
+    <div class="feedbacks-container">
+      <h2>Feedbacks</h2>
+      <div class="feedbacks">
+        <div *ngFor="let feedback of visibleFeedbacks" class="feedback">
+          <p><strong>Name:</strong> {{ feedback.fullName }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>email:</strong> {{ feedback.email }}</p>
+          <p><strong>Title:</strong> {{ feedback.title }}</p>
+          <p><strong>Content:</strong> {{ feedback.content }}</p>
+
+        </div>
+      </div>
+      <div class="feedback-navigation">
+        <button (click)="prevFeedback()" [disabled]="currentIndex === 0">← Prev</button>
+        <button (click)="nextFeedback()" [disabled]="currentIndex + 3 >= feedbacks.length">Next →</button>
+      </div>
+    </div>
+
+</body>
+</html>

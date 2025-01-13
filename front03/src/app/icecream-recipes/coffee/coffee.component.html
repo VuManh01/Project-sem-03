@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Ice Cream Recipe</title>
+    <link rel="stylesheet" href="coffee.component.css">
+</head>
+<body>
+    <header>
+        <h1>Coffee Ice Cream Recipe</h1>
+    </header>
+
+    <div class="content">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#step1">Step 1:Steep the milk </a></li>
+                <li><a href="#step2">Step 2: </a></li>
+                <li><a href="#step3">Step 3: </a></li>
+                <li><a href="#step4">Step 4: </a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>2 cups heavy cream</li>
+                <li>1 cup whole milk</li>
+                <li>3/4 cup sugar</li>
+                <li>1 teaspoon vanilla extract</li>
+                <li>A pinch of salt</li>
+                <li>5 large egg yolks</li>
+                <li>1/4 teaspoon finely ground coffee (press grinds through a fine mesh sieve)</li>
+            </ul>
+
+            <h2>Tools</h2>
+            <ul>
+                <li>Ice cream maker (if available)</li>
+                <li>Large mixing bowl</li>
+                <li>Whisk</li>
+            </ul>
+
+            <h2>Instructions</h2>
+            <div class="steps">
+                <p id="step1"><strong>Step 1:</strong>Heat the milk, sugar, whole coffee beans, salt, and 1/2 cup of the cream in a medium saucepan until it is quite warm and steamy, but not boiling. Once the mixture is warm, cover, remove from the heat, and let steep at room temperature for 1 hour. </p>
+                <img src="https://www.simplyrecipes.com/thmb/G_Eoju-Vt3SUXolgNbwX0mjIuXg=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2007__04__coffee-ice-cream-method-1-555a4b53977142019dfed761f10a6179.jpg" alt="Mixing ingredients together">
+
+                <p id="step2"><strong>Step 2:</strong>Pour the remaining 1 cup of cream into a medium metal bowl and set it in a large bowl full of ice. Set a mesh strainer on top of the bowls. Set aside. </p>
+                <img src="https://www.simplyrecipes.com/thmb/_uJdkXTfvyTBVvO7nkxG4JIuMrs=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2007__04__coffee-ice-cream-method-3-22de2466e9d9462e8345c3783c416426.jpg" alt="Adding vanilla extract">
+
+                <p id="step3"><strong>Step 3:</strong>Reheat the milk and coffee mixture on medium heat until it's hot and steamy again (not boiling!) </p>
+                <img src="https://www.simplyrecipes.com/thmb/u4Fdvh2cEWnDwa-3iFKPyCwoRm8=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2007__04__coffee-ice-cream-method-4-07ce7c6ce4ce4cf79d10e291d672bc4f.jpg" alt="Ice cream maker in action">
+
+                <p id="step4"><strong>Step 4:</strong>Chill the mixture thoroughly in the refrigerator, then freeze it in your ice cream maker according to the manufacturer's instructions. </p>
+                <img src="https://www.simplyrecipes.com/thmb/weDYxgslX_hJ1rQr3kw21YwO3Zg=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2007__04__coffee-ice-cream-method-6-424a8c55946443e59118b69aba562612.jpg" alt="Finished vanilla ice cream">
+            </div>
+        </div>
+    </div>
+    <div class="feedbacks-container">
+      <h2>Feedbacks</h2>
+      <div class="feedbacks">
+        <div *ngFor="let feedback of visibleFeedbacks" class="feedback">
+          <p><strong>Name:</strong> {{ feedback.fullName }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>email:</strong> {{ feedback.email }}</p>
+          <p><strong>Title:</strong> {{ feedback.title }}</p>
+          <p><strong>Content:</strong> {{ feedback.content }}</p>
+
+        </div>
+      </div>
+      <div class="feedback-navigation">
+        <button (click)="prevFeedback()" [disabled]="currentIndex === 0">← Prev</button>
+        <button (click)="nextFeedback()" [disabled]="currentIndex + 3 >= feedbacks.length">Next →</button>
+      </div>
+    </div>
+
+</body>
+</html>

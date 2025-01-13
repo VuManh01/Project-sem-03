@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Ice Cream Recipe</title>
+    <link rel="stylesheet" href="cherry.component.css">
+</head>
+<body>
+    <header>
+        <h1>Cherry Ice Cream Recipe</h1>
+    </header>
+
+    <div class="content">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#step1">Step 1:Roasting </a></li>
+                <li><a href="#step2">Step 2:Cooking  </a></li>
+                <li><a href="#step3">Step 3:Adjusting Flavors </a></li>
+                <li><a href="#step4">Step 4:Freezing </a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>2 cups heavy cream</li>
+                <li>1 cup whole milk</li>
+                <li>3/4 cup sugar</li>
+                <li>1 teaspoon vanilla extract</li>
+                <li>A pinch of salt</li>
+            </ul>
+
+            <h2>Tools</h2>
+            <ul>
+                <li>Ice cream maker (if available)</li>
+                <li>Large mixing bowl</li>
+                <li>Whisk</li>
+            </ul>
+
+            <h2>Instructions</h2>
+            <div class="steps">
+                <p id="step1"><strong>Step 1:</strong>I start by sprinkling the cherries with sugar and roasting them in the same deep skillet I'll later use to cook down their juices. </p>
+                <img src="https://www.seriouseats.com/thmb/LBKd29OVzYjyPx_ky93kVmGPhw8=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__2017__07__20170629-roasted-cherry-ice-cream-6-491923cb28c544818f675c257ebcd318.jpg" alt="Mixing ingredients together">
+
+                <p id="step2"><strong>Step 2:</strong>Meanwhile, I give the roasted cherries a rough chop with an immersion blender—just enough to break up the larger pieces—and return them to the pan of juices. The next step is to cook them over medium heat, scraping with a flexible, heat resistant spatula to prevent splattering, until about half the juices have evaporated and the mixture looks jammy and thick, but not dry. </p>
+                <img src="https://www.seriouseats.com/thmb/7c0r66Zh0uMQk98saTpcMrB24lQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__2017__07__20170629-roasted-cherry-ice-cream-collage2-416c826d2c824bf983b505a23fd099cc.jpg" alt="Adding vanilla extract">
+
+                <p id="step3"><strong>Step 3:</strong>To speed the cooling process, I like to chill the base in an ice bath, but it's fine if you'd prefer to simply toss it in the fridge. Once the mixture is cool, try a spoonful and doctor it with a little salt and/or lemon juice to taste (don't do this while the base is warm, as the temperature will throw off your perception of the flavors). </p>
+                <img src="https://www.seriouseats.com/thmb/syDt1DMoT9RwU4jh5GMIVGNMJCM=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__2017__07__20170629-roasted-cherry-ice-cream-23-73c86ad2a70d44d28415dace0e4334e7.jpg" alt="Ice cream maker in action">
+
+                <p id="step4"><strong>Step 4:</strong>Continue refrigerating until the base is cold, about 39°F (4°C), and then churn it in an ice cream maker (we use a Cuisinart ICE-21 in our test kitchen). </p>
+                <img src="https://www.seriouseats.com/thmb/aHiPn2yZL1sUoz1KcGIzqMEG-CI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__2017__07__20170629-roasted-cherry-ice-cream-28-6cdb0021952843d4a2ac549918e985f4.jpg" alt="Finished vanilla ice cream">
+            </div>
+        </div>
+    </div>
+    <div class="feedbacks-container">
+      <h2>Feedbacks</h2>
+      <div class="feedbacks">
+        <div *ngFor="let feedback of visibleFeedbacks" class="feedback">
+          <p><strong>Name:</strong> {{ feedback.fullName }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>email:</strong> {{ feedback.email }}</p>
+          <p><strong>Title:</strong> {{ feedback.title }}</p>
+          <p><strong>Content:</strong> {{ feedback.content }}</p>
+
+        </div>
+      </div>
+      <div class="feedback-navigation">
+        <button (click)="prevFeedback()" [disabled]="currentIndex === 0">← Prev</button>
+        <button (click)="nextFeedback()" [disabled]="currentIndex + 3 >= feedbacks.length">Next →</button>
+      </div>
+    </div>
+
+</body>
+</html>

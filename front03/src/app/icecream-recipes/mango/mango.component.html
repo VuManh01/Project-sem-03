@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Ice Cream Recipe</title>
+    <link rel="stylesheet" href="mango.component.css">
+</head>
+<body>
+    <header>
+        <h1>Mango Ice Cream Recipe</h1>
+    </header>
+
+    <div class="content">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#step1">Step 1:Prepare the Mango </a></li>
+                <li><a href="#step2">Step 2:Blend the Ingredients </a></li>
+                <li><a href="#step3">Step 3:Freeze the Ice Cream </a></li>
+                <li><a href="#step4">Step 4:Blend the Ice Cream Cubes </a></li>
+                <li><a href="#step5">Step 5:Enjoy! </a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>2 cups heavy cream</li>
+                <li>1 cup whole milk</li>
+                <li>3/4 cup sugar</li>
+                <li>1 teaspoon vanilla extract</li>
+                <li>A pinch of salt</li>
+            </ul>
+
+            <h2>Tools</h2>
+            <ul>
+                <li>Ice cream maker (if available)</li>
+                <li>Large mixing bowl</li>
+                <li>Whisk</li>
+            </ul>
+
+            <h2>Instructions</h2>
+            <div class="steps">
+                <p id="step1"><strong>Step 1:</strong>First, wash and peel your mangoes. Then use a knife to cut the flesh away from the seed. Use a fork/spoon to scrape the seed and remove as much flesh as possible.
+
+                  You can do this straight into a food processor or first do it in a bowl, whichever is easiest for you.
+
+                  If you’re using tinned mango, then skip this step. </p>
+                <img src="https://www.alphafoodie.com/wp-content/uploads/2021/06/Mango-Ice-Cream-Cutting-off-mango-flesh-1024x1536.jpeg" alt="Mixing ingredients together">
+
+                <p id="step2"><strong>Step 2:</strong>Add the mango flesh along with all the remaining ingredients to a food processor and blend into a smooth, creamy mango puree. This may take some time, so be patient. You want it to be ultra-smooth, so you don’t have any “bits” in your ice cream.
+
+                  When ready, give it a quick taste, and feel free to add a little more maple or lime juice to personal preference. </p>
+                <img src="https://www.alphafoodie.com/wp-content/uploads/2021/06/Mango-Ice-Cream-Steps-for-preparing-base-for-mango-ice-cream-1024x1536.jpg" alt="Adding vanilla extract">
+
+                <p id="step3"><strong>Step 3:</strong>This vegan mango ice cream method is made without an ice cream machine. Instead, you need a large (silicone if possible) ice-cube tray or a wide container.
+
+                  Ice tray method: pour the mango puree into your ice cube tray and transfer it to the freezer, covered, for 6 hours or overnight (or up to 24 hours). </p>
+                <img src="https://www.alphafoodie.com/wp-content/uploads/2021/06/Mango-Ice-Cream-Before-and-after-freezing-mango-puree-1024x1536.jpg" alt="Ice cream maker in action">
+
+                <p id="step4"><strong>Step 4:</strong>Transfer the frozen mango ice cubes to your food processor and blend into a soft, smooth consistency. </p>
+                <img src="https://www.alphafoodie.com/wp-content/uploads/2021/06/Mango-Ice-Cream-Blending-frozen-mango-puree-1024x1536.jpg" alt="Finished vanilla ice cream">
+
+                <p id="step5"><strong>Step 5:</strong>EnJoy! </p>
+                <img src="https://www.alphafoodie.com/wp-content/uploads/2021/06/Mango-Ice-Cream-Scooping-mango-ice-cream-1024x1536.jpeg" alt="Finished vanilla ice cream">
+              </div>
+        </div>
+    </div>
+    <div class="feedbacks-container">
+      <h2>Feedbacks</h2>
+      <div class="feedbacks">
+        <div *ngFor="let feedback of visibleFeedbacks" class="feedback">
+          <p><strong>Name:</strong> {{ feedback.fullName }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>email:</strong> {{ feedback.email }}</p>
+          <p><strong>Title:</strong> {{ feedback.title }}</p>
+          <p><strong>Content:</strong> {{ feedback.content }}</p>
+
+        </div>
+      </div>
+      <div class="feedback-navigation">
+        <button (click)="prevFeedback()" [disabled]="currentIndex === 0">← Prev</button>
+        <button (click)="nextFeedback()" [disabled]="currentIndex + 3 >= feedbacks.length">Next →</button>
+      </div>
+    </div>
+
+</body>
+</html>

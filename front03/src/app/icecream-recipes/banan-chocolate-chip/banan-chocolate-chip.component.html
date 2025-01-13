@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Ice Cream Recipe</title>
+    <link rel="stylesheet" href="banan-chocolate-chip.component.css">
+</head>
+<body>
+    <header>
+        <h1>Banana Chocolate Chips Recipe</h1>
+    </header>
+
+    <div class="content">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#step1">Step 1:Preheat </a></li>
+                <li><a href="#step2">Step 2:Combine </a></li>
+                <li><a href="#step3">Step 3:Add Chocolate Chips </a></li>
+                <li><a href="#step4">Step 4:Bake </a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>2 cups heavy cream</li>
+                <li>1 cup whole milk</li>
+                <li>3/4 cup sugar</li>
+                <li>1 teaspoon vanilla extract</li>
+                <li>A pinch of salt</li>
+                <li>1 ripe banana, mashed</li>
+                <li>1 cup semi-sweet chocolate chips</li>
+            </ul>
+
+            <h2>Tools</h2>
+            <ul>
+                <li>Ice cream maker (if available)</li>
+                <li>Large mixing bowl</li>
+                <li>Whisk</li>
+            </ul>
+
+            <h2>Instructions</h2>
+            <div class="steps">
+                <p id="step1"><strong>Step 1:</strong>Preheat & Cream: Preheat your oven to 350°F (175°C). In a large bowl, cream together the softened butter and brown sugar until light and fluffy. Add in the mashed banana and vanilla extract, mixing until combined. </p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDolxqVSbWJ5ftJXlkatTnm5um2Cyb66BOsg&s" alt="Mixing ingredients together">
+
+                <p id="step2"><strong>Step 2:</strong>Combine Dry Ingredients: In another bowl, whisk together the flour, baking soda, and salt. Gradually add this dry mixture to the wet ingredients, mixing until fully combined. </p>
+                <img src="https://myurbantreats.com/wp-content/uploads/2020/10/Add-Dry-Ingredients.jpg" alt="Adding vanilla extract">
+
+                <p id="step3"><strong>Step 3:</strong>Add Chocolate Chips: Stir in the chocolate chips until evenly distributed throughout the dough. </p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLJf1DqrfQBiXO3OLMUXZHOVgo1XiSH4w8zA&s" alt="Ice cream maker in action">
+
+                <p id="step4"><strong>Step 4:</strong>Bake: Drop tablespoon-sized scoops of dough onto a baking sheet, spaced about 2 inches apart. Bake for 9-11 minutes or until the edges are golden brown. Let them cool on the sheet for a few minutes before transferring to a wire rack to cool completely. </p>
+                <img src="https://3jamigos.com/wp-content/uploads/2024/12/IMG_3433-1-scaled.jpeg" alt="Finished vanilla ice cream">
+            </div>
+        </div>
+    </div>
+    <div class="feedbacks-container">
+      <h2>Feedbacks</h2>
+      <div class="feedbacks">
+        <div *ngFor="let feedback of visibleFeedbacks" class="feedback">
+          <p><strong>Name:</strong> {{ feedback.fullName }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>email:</strong> {{ feedback.email }}</p>
+          <p><strong>Title:</strong> {{ feedback.title }}</p>
+          <p><strong>Content:</strong> {{ feedback.content }}</p>
+
+        </div>
+      </div>
+      <div class="feedback-navigation">
+        <button (click)="prevFeedback()" [disabled]="currentIndex === 0">← Prev</button>
+        <button (click)="nextFeedback()" [disabled]="currentIndex + 3 >= feedbacks.length">Next →</button>
+      </div>
+    </div>
+
+</body>
+</html>

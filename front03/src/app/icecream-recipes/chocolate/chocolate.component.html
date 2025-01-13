@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Ice Cream Recipe</title>
+    <link rel="stylesheet" href="chocolate.component.css">
+</head>
+<body>
+    <header>
+        <h1>Choco Ice Cream Recipe</h1>
+    </header>
+
+    <div class="content">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#step1">Step 1: Mix Ingredients</a></li>
+                <li><a href="#step2">Step 2: Add Vanilla</a></li>
+                <li><a href="#step3">Step 3: Melt</a></li>
+                <li><a href="#step4">Step 4: Remove from heat</a></li>
+                <li><a href="#step5">Step 5: Churn</a></li>
+                <li><a href="#step6">Step 6: Freeze</a></li>
+                <li><a href="#step7">Step 7: Enjoy</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>2 cups heavy cream</li>
+                <li>1 cup whole milk</li>
+                <li>3/4 cup sugar</li>
+                <li>1/2 cup cocoa powder</li>
+                <li>1 teaspoon vanilla extract</li>
+                <li>A pinch of salt</li>
+                <li>3/4 cup semi-sweet chocolate chips (optional, for extra richness)</li>
+            </ul>
+
+            <h2>Tools</h2>
+            <ul>
+                <li>Ice cream maker (if available)</li>
+                <li>Large mixing bowl</li>
+                <li>Whisk</li>
+            </ul>
+
+            <h2>Instructions</h2>
+            <div class="steps">
+                <p id="step1"><strong>Step 1:</strong> Mix dry ingredients: In a medium bowl, whisk together the cocoa powder, sugar, and salt.</p>
+                <img src="https://beyondthebutter.com/wp-content/uploads/2024/03/whisking-dry-ingredients-together.jpg" alt="Mixing ingredients together">
+
+                <p id="step2"><strong>Step 2:</strong>Heat milk and cream: In a saucepan over medium heat, combine the whole milk and heavy cream. Heat until it's warm but not boiling.</p>
+                <img src="https://www.wikihow.com/images/thumb/1/1b/Make-Cream-from-Milk-Step-3-Version-12.jpg/550px-nowatermark-Make-Cream-from-Milk-Step-3-Version-12.jpg" alt="Adding vanilla extract">
+
+                <p id="step3"><strong>Step 3:</strong> Melt the chocolate: If using chocolate chips, add them to the saucepan. Stir until the chocolate is melted and fully incorporated.</p>
+                <img src="https://agrobio-int.com/wp-content/uploads/2024/12/melt-choc-chip.jpg" alt="Ice cream maker in action">
+
+                <p id="step4"><strong>Step 4:</strong> Remove from heat and stir in the vanilla extract. Allow the mixture to cool to room temperature, then refrigerate it for at least 2 hours (or overnight) to chill thoroughly.</p>
+                <img src="https://www.theflavorbender.com/wp-content/uploads/2024/05/How-to-temper-egg-mixture.jpg" alt="Finished vanilla ice cream">
+
+                <p id="step5"><strong>Step 5:</strong> Churn the ice cream: Once the mixture is chilled, pour it into an ice cream maker and churn according to the manufacturer's instructions (usually about 20-25 minutes).</p>
+                <img src="https://lizzylovesfood.com/wp-content/uploads/2024/11/step-for-bagels_0002_Step-Cuisinart-Vanilla-Ice-Cream_5-1.jpg" alt="Finished vanilla ice cream">
+
+                <p id="step6"><strong>Step 6:</strong> Freeze: Transfer the churned ice cream to an airtight container and freeze for about 3-4 hours to harden.</p>
+                <img src="https://www.recipetips.com/kitchen/images/refimages/kitchen_advice/homemade%20ice%20cream/custard%20method/wipe_container.jpg" alt="Finished vanilla ice cream">
+
+                <p id="step7"><strong>Step 7:</strong> Serve: Scoop and enjoy your homemade chocolate ice cream!</p>
+                <img src="https://floralapron.com/wp-content/uploads/2024/07/Double-Chocolate-Ice-Cream-Feat-Image-scaled.jpg" alt="Finished vanilla ice cream">
+
+
+            </div>
+        </div>
+    </div>
+    <div class="feedbacks-container">
+      <h2>Feedbacks</h2>
+      <div class="feedbacks">
+        <div *ngFor="let feedback of visibleFeedbacks" class="feedback">
+          <p><strong>Name:</strong> {{ feedback.fullName }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>email:</strong> {{ feedback.email }}</p>
+          <p><strong>Title:</strong> {{ feedback.title }}</p>
+          <p><strong>Content:</strong> {{ feedback.content }}</p>
+
+        </div>
+      </div>
+      <div class="feedback-navigation">
+        <button (click)="prevFeedback()" [disabled]="currentIndex === 0">← Prev</button>
+        <button (click)="nextFeedback()" [disabled]="currentIndex + 3 >= feedbacks.length">Next →</button>
+      </div>
+    </div>
+
+</body>
+</html>

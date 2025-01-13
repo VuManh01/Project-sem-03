@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Ice Cream Recipe</title>
+    <link rel="stylesheet" href="pineapple.component.css">
+</head>
+<body>
+    <header>
+        <h1>Pineapple Recipe</h1>
+    </header>
+
+    <div class="content">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#step1">Step 1:Prepare the topping </a></li>
+                <li><a href="#step2">Step 2:Prepare the batter </a></li>
+                <li><a href="#step3">Step 3:Assemble and bake </a></li>
+                <li><a href="#step4">Step 4:Cool down and flip</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>2 cups heavy cream</li>
+                <li>1 cup whole milk</li>
+                <li>3/4 cup sugar</li>
+                <li>1 teaspoon vanilla extract</li>
+                <li>A pinch of salt</li>
+            </ul>
+
+            <h2>Tools</h2>
+            <ul>
+                <li>Ice cream maker (if available)</li>
+                <li>Large mixing bowl</li>
+                <li>Whisk</li>
+            </ul>
+
+            <h2>Instructions</h2>
+            <div class="steps">
+                <p id="step1"><strong>Step 1:</strong>Prepare the Cake Pan: If, like me, you’re using a round cake pan with a removable base, make sure the tin is tightly sealed to prevent any leaks during cooking. You can use an ordinary round tin without a removable base – an 8-inch (20cm) tin is usually large enough for this recipe. </p>
+                <img src="https://www.alphafoodie.com/wp-content/uploads/2023/10/steps-for-the-topping-of-pineapple-upside-down-cake-1.jpg" alt="Mixing ingredients together">
+
+                <p id="step2"><strong>Step 2:</strong>Cream the Butter and Sugar: To make the sponge, cream the butter and sugar together using a hand mixer in a large bowl until light and fluffy. This should take about three minutes. </p>
+                <img src="https://www.alphafoodie.com/wp-content/uploads/2023/10/Steps-for-preparing-the-batter-of-pineapple-upsidedown-cake-1024x1536.jpg" alt="Adding vanilla extract">
+
+                <p id="step3"><strong>Step 3:</strong>Pour the Cake Batter: Pour the cake batter on top of the pineapple base and use a spatula to level off the top. Be careful not to fill the tin completely – the cake will rise in the oven and can spill out if it’s too full. </p>
+                <img src="https://www.alphafoodie.com/wp-content/uploads/2023/10/layering-and-baking-of-pineapple-upside-down-cake.jpg" alt="Ice cream maker in action">
+
+                <p id="step4"><strong>Step 4:</strong>Allow your cake to cool before attempting to flip it – sponges are very delicate when they’re warm and can break if you try and remove them from the tin too early. </p>
+                <img src="https://www.alphafoodie.com/wp-content/uploads/2023/10/layering-and-baking-of-pineapple-upside-down-cake.jpg" alt="Finished vanilla ice cream">
+            </div>
+        </div>
+    </div>
+    <div class="feedbacks-container">
+      <h2>Feedbacks</h2>
+      <div class="feedbacks">
+        <div *ngFor="let feedback of visibleFeedbacks" class="feedback">
+          <p><strong>Name:</strong> {{ feedback.fullName }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>email:</strong> {{ feedback.email }}</p>
+          <p><strong>Title:</strong> {{ feedback.title }}</p>
+          <p><strong>Content:</strong> {{ feedback.content }}</p>
+
+        </div>
+      </div>
+      <div class="feedback-navigation">
+        <button (click)="prevFeedback()" [disabled]="currentIndex === 0">← Prev</button>
+        <button (click)="nextFeedback()" [disabled]="currentIndex + 3 >= feedbacks.length">Next →</button>
+      </div>
+    </div>
+
+</body>
+</html>

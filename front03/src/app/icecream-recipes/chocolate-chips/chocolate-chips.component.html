@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Ice Cream Recipe</title>
+    <link rel="stylesheet" href="chocolate-chips.component.css">
+</head>
+<body>
+    <header>
+        <h1>Choco Chips Recipe</h1>
+    </header>
+
+    <div class="content">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#step1">Step 1:Preheat & Cream </a></li>
+                <li><a href="#step2">Step 2: Combine Dry Ingredients</a></li>
+                <li><a href="#step3">Step 3: Add Chocolate Chips</a></li>
+                <li><a href="#step4">Step 4: Bake</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>2 cups heavy cream</li>
+                <li>1 cup whole milk</li>
+                <li>3/4 cup sugar</li>
+                <li>1 teaspoon vanilla extract</li>
+                <li>A pinch of salt</li>
+                <li>1  cup (2 sticks) unsalted butter, softened</li>
+                <li>2 cups semi-sweet chocolate chips</li>
+            </ul>
+
+            <h2>Tools</h2>
+            <ul>
+                <li>Ice cream maker (if available)</li>
+                <li>Large mixing bowl</li>
+                <li>Whisk</li>
+            </ul>
+
+            <h2>Instructions</h2>
+            <div class="steps">
+                <p id="step1"><strong>Step 1:</strong>Preheat & Cream: Preheat your oven to 350°F (175°C). In a large bowl, cream together the softened butter, granulated sugar, brown sugar, and vanilla extract until smooth. </p>
+                <img src="https://blog.wilton.com/wp-content/uploads/sites/2/2020/04/Step-2-cream-butter-sugar-light-fluffy.jpg" alt="Mixing ingredients together">
+
+                <p id="step2"><strong>Step 2:</strong>Combine Dry Ingredients: In another bowl, whisk together the flour, baking soda, and salt. Gradually add this dry mixture to the creamed butter mixture, mixing until combined.
+
+                </p>
+                <img src="https://www.bhg.com/thmb/bC2Jk9uxOUsl6Y2lcbdBlhtCH1I=/1244x0/filters:no_upscale():strip_icc()/fold-mix-wet-dry-ingredients-bowl-AFlvp8UzqUKBoggYFcFXyZ-4a21445a54554559a330c5e8ef750a17.jpg" alt="Adding vanilla extract">
+
+                <p id="step3"><strong>Step 3:</strong>Add Chocolate Chips: Stir in the chocolate chips until evenly distributed throughout the dough.
+
+                </p>
+                <img src="https://i0.wp.com/mydragonflycafe.com/wp-content/uploads/2023/03/pizookie22.jpg?ssl=1" alt="Ice cream maker in action">
+
+                <p id="step4"><strong>Step 4:</strong> Bake: Drop tablespoon-sized scoops of dough onto a baking sheet, spaced about 2 inches apart. Bake for 9-11 minutes or until the edges are golden brown. Let them cool on the sheet for a few minutes before transferring them to a wire rack to cool completely.</p>
+                <img src="https://blog.wilton.com/wp-content/uploads/sites/2/2020/04/Step-6-scoop-dough.jpg" alt="Finished vanilla ice cream">
+            </div>
+        </div>
+    </div>
+    <div class="feedbacks-container">
+      <h2>Feedbacks</h2>
+      <div class="feedbacks">
+        <div *ngFor="let feedback of visibleFeedbacks" class="feedback">
+          <p><strong>Name:</strong> {{ feedback.fullName }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>email:</strong> {{ feedback.email }}</p>
+          <p><strong>Title:</strong> {{ feedback.title }}</p>
+          <p><strong>Content:</strong> {{ feedback.content }}</p>
+
+        </div>
+      </div>
+      <div class="feedback-navigation">
+        <button (click)="prevFeedback()" [disabled]="currentIndex === 0">← Prev</button>
+        <button (click)="nextFeedback()" [disabled]="currentIndex + 3 >= feedbacks.length">Next →</button>
+      </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Ice Cream Recipe</title>
+    <link rel="stylesheet" href="strawberry.component.css">
+</head>
+<body>
+    <header>
+        <h1>Strawberry Ice Cream Recipe</h1>
+    </header>
+
+    <div class="content">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#step1">Step 1:Prepare Strawberries </a></li>
+                <li><a href="#step2">Step 2:Mix Wet</a></li>
+                <li><a href="#step3">Step 3:Combine </a></li>
+                <li><a href="#step4">Step 4:Churn </a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>2 cups heavy cream</li>
+                <li>1 cup whole milk</li>
+                <li>3/4 cup sugar</li>
+                <li>1 teaspoon vanilla extract</li>
+                <li>A pinch of salt</li>
+                <li>2 cups fresh strawberries, hulled and sliced</li>
+            </ul>
+
+            <h2>Tools</h2>
+            <ul>
+                <li>Ice cream maker (if available)</li>
+                <li>Large mixing bowl</li>
+                <li>Whisk</li>
+            </ul>
+
+            <h2>Instructions</h2>
+            <div class="steps">
+                <p id="step1"><strong>Step 1:</strong>Prepare Strawberries: In a bowl, mash the strawberries with a fork or potato masher. Add 1/4 cup of sugar to the strawberries and let them sit for 10-15 minutes to release their juice, then blend them until smooth. </p>
+                <img src="https://mandiofthemountains.com/wp-content/uploads/2024/04/strawberry-simple-syrup-2-1024x683.jpg" alt="Mixing ingredients together">
+
+                <p id="step2"><strong>Step 2:</strong>Mix Wet Ingredients: In a separate bowl, whisk together the heavy cream, whole milk, vanilla extract, and the remaining 1/2 cup of sugar until the sugar dissolves completely. </p>
+                <img src="https://www.allrecipes.com/thmb/DmWpuVFK4161W-ByrjdpNH9XLlQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-8314-Vanilla-Ice-Cream-gw-ddmfs-4x3-step-05-cab9860e9a404b1289dd1ed8d69e989b.jpg" alt="Adding vanilla extract">
+
+                <p id="step3"><strong>Step 3:</strong>Combine: Mix the pureed strawberries into the cream mixture, stirring well to combine. </p>
+                <img src="https://kristinarecipes.com/wp-content/uploads/2024/12/Untitled-design.webp" alt="Ice cream maker in action">
+
+                <p id="step4"><strong>Step 4:</strong>Churn & Freeze: Pour the mixture into an ice cream maker and churn according to the manufacturer's instructions (about 20-25 minutes). Then transfer the churned ice cream into an airtight container and freeze for 3-4 hours until firm. </p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE33txxs93HWUZcPAJzH8JhIe90ayTdQPYBg&s" alt="Finished vanilla ice cream">
+            </div>
+        </div>
+    </div>
+    <div class="feedbacks-container">
+      <h2>Feedbacks</h2>
+      <div class="feedbacks">
+        <div *ngFor="let feedback of visibleFeedbacks" class="feedback">
+          <p><strong>Name:</strong> {{ feedback.fullName }}&nbsp;&nbsp;&nbsp;&nbsp;<strong>email:</strong> {{ feedback.email }}</p>
+          <p><strong>Title:</strong> {{ feedback.title }}</p>
+          <p><strong>Content:</strong> {{ feedback.content }}</p>
+
+        </div>
+      </div>
+      <div class="feedback-navigation">
+        <button (click)="prevFeedback()" [disabled]="currentIndex === 0">← Prev</button>
+        <button (click)="nextFeedback()" [disabled]="currentIndex + 3 >= feedbacks.length">Next →</button>
+      </div>
+    </div>
+
+</body>
+</html>
