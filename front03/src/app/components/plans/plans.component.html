@@ -22,7 +22,7 @@
             <button (click)="confirmDeletion(item.membershipServiceId, item.price)">Select Plan</button>
             <p class="title-text">Cascade credits:</p>
             <ul>
-                <li *ngFor="let text of (item.description.split('\n'))">
+                <li *ngFor="let text of (item.description.split('/n'))">
                     {{text}}
                 </li>
             </ul>
